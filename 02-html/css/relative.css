@@ -2,21 +2,21 @@
 
 
 body{
-    background-color: #ccc;
-    color: #333;
     font-family: popping;
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    background-color: #ccc;
+    color: #333;
 }
 
 main{
     background-color: #fff;
-    align-items: center;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    align-items: center;
     width: 80%;
+    padding: 20px;
 
     header{
         display: flex;
@@ -25,22 +25,19 @@ main{
         width: 100%;
 
 
-        a:is(:link, :visited) {
-            background-color: #ccc;
+        a:is(:link, ::visited) {
+            background-color: #bbbbbb;
             color: black;
             font-size: 1.4rem;
             padding: 10px;
             text-decoration: none;
-            text-align: center;
-            font-size: none;
-            transition: all 0.4s ease-in;
             width: 20%
-        
-
+            transition: all 0.4s ease-in;
+            text-align: center;
         }
-        a:is(::hover) {
+        a:is(:hover) {
             background-color: #333;
-            color: #ccc
+            color: #000000
         }
     }
 
