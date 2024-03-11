@@ -6,7 +6,62 @@
     <title>forms</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
+        div.block {
+            display: flex;
+            flex-direction: column;
 
+            div.input{
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                h4 {
+                    margin: 0;
+                    width: 120px;
+                }            
+            }
+        }
+        section{
+            nav {
+                width: fit-content;
+                margin: 10px;
+                a:is(:link, :visited){
+                    background-color: rgba(255, 0, 0, 0.6);
+                    color: #000000;
+                    padding: 8px;
+                    text-decoration: none;
+                    transition: all 0.4s ease-in;
+                }
+                a:is(:hover, :active){
+                   background-color: #fff;
+                }
+                a:first-child{
+                    border-radius: 20px 0 0 20px;
+                }
+                a:last-child {
+                    border-radius: 0 20px 20px 0;
+                }  
+            }
+
+            div#elements,
+            div#examples {
+                display: none;
+            }
+            #elements:target,
+            #example:target {
+                display: block;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            label {
+                padding: 0.7rem;
+                display: flex;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -23,20 +78,153 @@
             </h2>
         </header>
         <section>
-            <h3>inputs</h3>
-            <div class="block">
+            <nav>
+                <a href="#elements">elements</a>
+                <a href="#example">example</a>
+            </nav>
+            <div class="block" id="elements">
+                <h3>inputs</h3>
+                <div class="input">
                     <h4>text</h4>
                     <input type="text">
                 </div>
-            <div class="block">
-                    <h4>pasword</h4>
-                    <input type="pasword">
+            <div class="input">
+                    <h4>password</h4>
+                    <input id="passw" type="password">
+                    <button id="toggle-option">show</button>
                 </div>
-            <div class="block">
+            <div class="input">
                     <h4>number</h4>
                     <input type="number">
                 </div>
+            <div class="input">
+                    <h4>range</h4>
+                    <input type="range" value="0" min="0" max="100" step="25" oninput="per.value=this.value+'%'">
+                    <output id="per">0%</output>
+                </div>
+                <div class="input">
+                    <h4>color</h4>
+                    <input type="color" oninput="color.value=this.value">
+                    <output id="color"></output>
+                </div>
+                <div class="input">
+                    <h4>date</h4>
+                    <input type="date">
+                </div>
+                <div class="input">
+                    <h4>time</h4>
+                    <input type="time">
+                </div>
+                <div class="input">
+                    <h4>week</h4>
+                    <input type="week">
+                </div>
+                <div class="input">
+                    <h4>month</h4>
+                    <input type="month">
+                </div>
+                <div class="input">
+                    <h4>email</h4>
+                    <input type="email">
+                </div>
+                <div class="input">
+                    <h4>search</h4>
+                    <input type="search">
+                </div>
+                <div class="input">
+                    <h4>file</h4>
+                    <input type="file">
+                </div>
+                <div class="input">
+                    <h4>button</h4>
+                    <input type="button" value="button">
+                </div>
+                <div class="input">
+                    <h4>submit</h4>
+                    <input type="submit" value="submit">
+                </div>
+                <div class="input">
+                    <h4>reset</h4>
+                    <input type="reset" value="reset">
+                </div>
+                <div class="input">
+                    <h4>radio</h4>
+                    <input type="radio" name="option1"checked>
+                    <input type="radio" name="option2">
+                </div>
+                <div class="input">
+                    <h4>checkbox</h4>
+                    <input type="checkbox" name="option1"checked>
+                    <input type="checkbox" name="option2">
+                </div>
+                <h3>others elements</h3>
+                <div class="input">
+                        <h4>progress</h4>
+                        <progress value="0.5"></progress>
+                </div>
+                <div class="input">
+                    <h4>select</h4>
+                    <select name="gender">
+                    <option value="" selected>select gender...</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <h4>text area</h4>
+                    <textarea cols="20" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div id="example">
+                <h3>example</h3>
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>
+                            <h4>personal info:</h4>
+                        </legend>
+                        <form action=""method="post">
+                            <label for="">
+                                fullname
+                                <input type="text" name="fullname" required>
+                            </label>
+                            <label for="">
+                                email
+                                <input type="email" name="email" required>
+                            </label>
+                            <label for="">
+                                birthdate
+                                <input type="date" name="birthdate" required>
+                            </label>
+                            <label for="">
+                                gender
+                                <select name="gender" required>
+                                    <option value="female">female</option>
+                                    <option value="male">male</option>
+                                </select>
+                            </label>
+                            <label>
+                                <input type="submit" value="send data">
+                                <input type="reset" value="reset data">
+                            </label>
+                        </form>
+                    </fieldset>
+            </div>
         </section>
     </main>
+    <script>
+        const passw     = document.getElementById("passw")
+        const toggleOpt = document.getElementById("toggle-option")
+
+        toggleOpt.addEventListener("click", () => {
+            if (toggleOpt.textContent == "show") {
+                toggleOpt.textContent = "hide"
+                passw.setAttribute("type", "text")
+            } else {
+                toggleOpt.textContent = "show"
+                passw.setAttribute("type", "pasword")
+            }
+        })
+    </script>
 </body>
 </html>
