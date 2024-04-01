@@ -6,7 +6,48 @@
     <title>position</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
-        
+        .section{
+            background-color: #fff9;
+            color: black;
+        }
+        div.parent{
+            border: 2px solid #0009;
+            margin: 2px auto;
+            padding: 32px;
+            width: 200px;
+        }
+        div.child{
+            
+        }
+        div.relative{
+            position: relative;
+        }
+        div.absolute{
+            position: absolute;
+        }
+        div.fixed{
+            position: fixed;
+        }
+        div.sticky{
+            position: sticky;
+        }
+        div.child.relative{
+            top: -20px;
+            left: 150px;
+        }
+        div.child.absolute{
+            position: absolute;
+            top: 50px;
+            left: 10px;
+        }
+        div.child.fixed{
+            top: 710px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        div.chlid.sticky{
+            top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -19,11 +60,34 @@
         <header>
             <h1>15-position</h1>
             <h2>son relativas a el tamaño padre</h2>
+            <ul>
+                <li>normal/startic</li>
+                <li>relative</li>
+                <li>absolute</li>
+                <li>fixed</li>
+                <li>sticky</li>
+            </ul>
+        </section>
         </header>
         <section class="section">
+            <h3>Relative:</h3>
             <div class="parent">
-                <div class="child1">60%</div>
-                <div class="child2">40%</div>
+                <div class="child relative">BOX</div>
+            </div>
+            <h3>absolute:</h3>
+            <div class="parent relative">
+                <div class="child absolute">BOX</div>
+            </div>
+            <h3>fixed:</h3>
+            <div class="parent">
+                <div class="child fixed">BOX</div>
+            </div>
+            <h3>sticky:</h3>
+            <div class="parent">
+                <div class="child sticky">BOX</div>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi neque veniam sapiente sunt laborum labore, porro nihil odit officia rerum ab minima architecto velit fugiat atque! Facilis sed assumenda iste, vitae inventore ab quam, excepturi similique dolorem veritatis maxime consequuntur.
+                </p>
             </div>
         </section>
     </main>
