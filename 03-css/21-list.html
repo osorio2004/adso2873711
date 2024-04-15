@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        ul{
+            list-style-type: square;
+        }
+        ul ul{
+            list-style-type: circle;
+        }
+        ol{
+            list-style-type: upper-roman;
+        }
+        ol ol {
+            list-style-type: lower-greek;
+        }
+        ul.images{
+            list-style-image: url(imagenes/basketball.png);
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>21-list</h1>
+            <h2>permite configurar los estilos de las listas</h2>
+        </header>
+        <section class="section01">
+            <h3>unordered list</h3>
+            <ul>
+                <li>html</li>
+                <li>css</li>
+                <li>
+                    javaScript
+                    <ul>
+                        <li>react JS</li>
+                        <li>vue JS</li>
+                        <li>angular JS</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>ordered list</h3>
+            <ol>
+                <li>goku</li>
+                <ol>
+                    <li>gohan</li>
+                    <li>goten</li>
+                </ol>
+                <li>vegeta</li>
+                <ol>
+                    <li>tronks</li>
+                    <li>brah</li>
+                </ol>
+                <li>krillin</li>
+                <li>yayirobe</li>
+            </ol>
+            <h3>image list</h3>
+            <ul class="images">
+                <li>golden state</li>
+                <li>lakers</li>
+                <li>mavericks</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
