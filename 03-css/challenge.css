@@ -1,131 +1,166 @@
 body {
-    background-color: #17A053;
-    justify-content: center;
-    display: flex;
-}
-div.sprite {
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -10px -400px;
-    margin: 0 auto;
-    height: 180px;
-    width: 190px;
-}
-.text{
-    justify-content: center;
-    margin: 0 263px;
-}
-a {
-    background-color: #0009;
-    color: #ffffff;
-    font-size: 1.4rem;
-    padding: 10px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.4s ease-in;
-    width: 100%;
-    align-content: center;
-    border-bottom: solid 4px;
-}
-a:is(:hover) {
-    background-color: black;
-    color: whitesmoke;
-    border-color: yellow;
-}
-.container{
-    margin-top: 30px;
-    display: flex;
-    background-color: #0009;
-}
-.box1{
-    border: white solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    margin: 30px 5px;
-    width: 290px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -472px -6px;
-}
-.box1 p{
-    background: #fff9;
-    padding-top: 1rem;
-    padding-left: 8rem;
-    padding-bottom: 1rem;
-    display: flex;
-
-}
-.box2{
-    border: white solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    margin: 30px 5px;
-    width: 290px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -472px -6px;
-}
-.box3{
-    border: white solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    margin: 30px 5px;
-    width: 290px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -472px -6px;
-}
-.container2{
-    margin: 40px;
-    background-color: #0009;
-}
-.box4{
-    background-color: white;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    width: 250px
-    margin: 10px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -200px -400px;
-}
-.box5{
-    background-color: white;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    width: 290px;
-    margin: 10px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -200px -400px;
-}
-.box6{
-    background-color: white;
-    justify-content: center;
-    padding: 1rem;
-    height: 170px;
-    width: 290px;
-    margin: 10px;
-    background: url(imagenes/spriteweb.png) no-repeat;
-    background-position: -200px -400px;
-}
-.container3{
-    margin-top: 30px;
-    display: flex;
-    background-color: white;
-}
-.box7{
-    background-color: white;
-    padding: 1rem;
-    padding: -10px;
-    height: 170px;
-    width: 290px;
-    margin: 10px;
-    background: url(imagenes/spriteweb.png);
-    background-position: -450px -400px;
-}
+    background-color: #17a053;
+    
+           }
+           html {
+            border: 5px solid white;
+        }
+              
+    
+    div.sprite {
+        background: url(imagenes/spriteweb.png)no-repeat;
+        background-position: -10px -400px;
+        margin: 0 auto;
+        height: 180px;
+        width: 190px;
+    }
+        div.menus{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+    
+          a:is(:link, :visited){
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.473);
+            border-bottom: solid 4px  white;
+            color: white;
+            font-size: 1rem;
+            width: 130px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        
+         div a:is(:hover){
+            background-color: rgba(0, 0, 0, 0.712);
+            border-color: gold;
+         }
+         div.box {
+            border: 2px solid rgba(61, 55, 55, 0.548);
+            height: 300px;
+            margin: 50px auto;
+            width: 600px;
+            justify-content: center;
+         }
+         
+         div.images{
+                display: flex;
+                flex-direction: row;
+                gap: 1.5rem;
+                margin: auto;
+                margin-top: 20px;
+                justify-content: center;
+                background-color: #0009;
+                padding: 1.5rem;
+                width: calc(230px * 3);
+                .imagn{
+                    background: url(imagenes/spriteweb.png);
+                    background-position: -530px -13px;
+                    width: 200px;
+                    height: 195px;
+                    border: 2px solid #fff;
+                    div{
+                        color: rgba(10, 10, 10, 0.6);
+                        background-color: rgba(240, 222, 222, 0.438);
+                        display: flex;
+                        justify-content: center;
+                        padding: 1.2rem;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        color: #000;
+                         
+                    }
+                    &:hover div {
+                        background-color: #c6ecc4;
+                    }
+                }
+            }
+            
+            main.caja-negra {
+            background-color: rgba(0, 0, 0, 0.473);
+            border: 0.5px solid rgba(12, 54, 7, 0.075);
+            width: 750px;
+            margin: 20px auto;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        div.medio{
+            background-color: #fff;
+            height: 200px;
+            width: 730px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        }
+    
+        div.imagen1 {
+            background: url(imagenes/spriteweb.png);
+            background-position: -280px -490px;
+            width: 200px;
+            height: 115px;   
+        }
+    
+        div.imagen2 {
+            background: url(imagenes/spriteweb.png);
+            background-position: 0px -190px;
+            height: 199px;
+            width: 260px;
+        }
+    
+        p {
+           
+            height: 199px;
+            width: 500px;
+            line-height: 1.6rem;
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+            font-size: 1.0rem;
+        }
+    
+    
+     main.caja-ultima {
+            width: 750px;
+            margin: 30px auto;
+            background-color: #fff;
+            height: 240px;
+    
+        }
+    
+        div.imagen-ultima {
+            background: url(imagenes/spriteweb.png);
+            background-position: -500px -421px;
+            margin: 0 auto;
+            height: 180px;
+            width: 290px;
+            }
+    
+        nav.menus2 {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            width: 200px;
+            margin: 0.7px auto;
+        }
+    
+        section {
+            color: #000;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.8rem;
+            width: 200px;
+            font-size: 0.9rem;
+          
+        }
+    
+        section:is(:hover) {
+            border-bottom: 4px solid rgb(17, 70, 1) 
+    
+        }    
