@@ -1,0 +1,131 @@
+body {
+    background-color: #17A053;
+    justify-content: center;
+    display: flex;
+}
+div.sprite {
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -10px -400px;
+    margin: 0 auto;
+    height: 180px;
+    width: 190px;
+}
+.text{
+    justify-content: center;
+    margin: 0 263px;
+}
+a {
+    background-color: #0009;
+    color: #ffffff;
+    font-size: 1.4rem;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.4s ease-in;
+    width: 100%;
+    align-content: center;
+    border-bottom: solid 4px;
+}
+a:is(:hover) {
+    background-color: black;
+    color: whitesmoke;
+    border-color: yellow;
+}
+.container{
+    margin-top: 30px;
+    display: flex;
+    background-color: #0009;
+}
+.box1{
+    border: white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    margin: 30px 5px;
+    width: 290px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -472px -6px;
+}
+.box1 p{
+    background: #fff9;
+    padding-top: 1rem;
+    padding-left: 8rem;
+    padding-bottom: 1rem;
+    display: flex;
+
+}
+.box2{
+    border: white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    margin: 30px 5px;
+    width: 290px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -472px -6px;
+}
+.box3{
+    border: white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    margin: 30px 5px;
+    width: 290px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -472px -6px;
+}
+.container2{
+    margin: 40px;
+    background-color: #0009;
+}
+.box4{
+    background-color: white;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    width: 250px
+    margin: 10px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -200px -400px;
+}
+.box5{
+    background-color: white;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    width: 290px;
+    margin: 10px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -200px -400px;
+}
+.box6{
+    background-color: white;
+    justify-content: center;
+    padding: 1rem;
+    height: 170px;
+    width: 290px;
+    margin: 10px;
+    background: url(imagenes/spriteweb.png) no-repeat;
+    background-position: -200px -400px;
+}
+.container3{
+    margin-top: 30px;
+    display: flex;
+    background-color: white;
+}
+.box7{
+    background-color: white;
+    padding: 1rem;
+    padding: -10px;
+    height: 170px;
+    width: 290px;
+    margin: 10px;
+    background: url(imagenes/spriteweb.png);
+    background-position: -450px -400px;
+}
