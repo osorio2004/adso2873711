@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>template</title>
+    <title>clip-path</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
-
+        div.clip{
+            background: url(imagenes/big\ bang.jpg) no-repeat center;
+            background-size: cover;
+            height: 240px;
+            margin-block: 1rem;
+            margin-inline: auto;
+            transition: all 1s ease-in;
+            width: 320px;
+        }
+        div.clip:hover{
+            clip-path: none;
+        }
+        div.clip1{
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        div.clip2{
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
     </style>
 </head>
 <body>
@@ -17,13 +34,16 @@
     </nav>
     <main>
         <header>
-            <h1>00-template </h1>
+            <h1>32-clip-path</h1>
             <h2>
-
+                es un area de un conjunto de partes de un elemento que seran mostradas
             </h2>
         </header>
         <section class="section">
-           
+           <h3>example 01</h3>
+           <div class="clip clip1"></div>
+           <h3>example 02</h3>
+           <div class="clip clip2"></div>
         </section>
     </main>
 </body>
