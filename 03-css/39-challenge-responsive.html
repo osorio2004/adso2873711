@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Responsive Design (media queries)</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap');
+        *{
+            transition: all 0.2s ease-in;
+        }
+        body{
+            background-color: #1c1c68;
+            color: #fffc;
+            font-family: poppins, sans-serif;
+            font-weight: 400;
+        }
+        main{
+            padding: 2rem;
+        }
+        main header figure.logo{
+            background: url(imagenes/Cyberpunk\ \(1\).png) no-repeat center;
+            margin:  0 auto;
+            width: 919px;
+            height: 354px;
+        }
+        /*--------------*/
+        /*MEDIA QUERIES*/
+        /*--------------*/
+        @media (max-width: 1024px){
+            main header figure.logo{
+                background: url(imagenes/Cyberpunk\ \(2\).png) no-repeat center;
+                margin:  0 auto;
+                width: 919px;
+                height: 354px;
+            }
+        }
+        @media (max-width: 780px){
+            main header figure.logo{
+                background: url(imagenes/Cyberpunk\ \(3\).png) no-repeat center;
+                margin:  0 auto;
+                width: 235px;
+                height: 156px;
+            }
+        }
+        body main section{
+            display: flex;
+            text-align: center;
+            gap: 2rem;
+            
+        }
+        body main section p{
+            background-color: #0009;
+            margin-top: 175px;
+        }
+        body div.david{
+            background: url(imagenes/Martinez.jpg) no-repeat center;
+            background-size: 200px;
+            width: 200px;
+            height: 200px;
+        }
+        body div.lucy{
+            background: url(imagenes/lucy.jpg) no-repeat center;
+            background-size: 200px;
+            width: 200px;
+            height: 200px;
+        }
+        body div.gloria{
+            background: url(imagenes/gloriaM.jpg) no-repeat center;
+            background-size: 200px;
+            width: 200px;
+            height: 200px;
+        }
+        body div.maine{
+            background: url(imagenes/maine.jpg) no-repeat center;
+            background-size: 200px;
+            width: 200px;
+            height: 200px;
+        }
+        </style>
+</head>
+<body>
+    <main>
+        <header>
+            <figure class="logo"></figure>
+        </header>
+        <section>
+            <div class="david">
+                <p>david martinez</p>
+            </div>
+            <div class="lucy">
+                <p>lucy</p>
+            </div>
+            <div class="gloria">
+                <p>gloria martinez</p>
+            </div>
+            <div class="maine">
+                <p>maine</p>
+            </div>           
+        </section>
+    </main>
+</body>
+</html>
