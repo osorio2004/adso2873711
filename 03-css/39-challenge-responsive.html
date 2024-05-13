@@ -6,76 +6,85 @@
         <title>Responsive Design (media queries)</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap');
-        *{
-            transition: all 0.2s ease-in;
-        }
-        body{
-            background-color: #1c1c68;
-            color: #fffc;
-            font-family: poppins, sans-serif;
-            font-weight: 400;
-        }
-        main{
-            padding: 2rem;
-        }
-        main header figure.logo{
-            background: url(imagenes/Cyberpunk\ \(1\).png) no-repeat center;
-            margin:  0 auto;
-            width: 919px;
-            height: 354px;
-        }
-        /*--------------*/
-        /*MEDIA QUERIES*/
-        /*--------------*/
-        @media (max-width: 1024px){
+            *{
+                transition: all 0.2s ease-in;
+            }
+            body{
+                background-color: #1c1c68;
+                color: #fffc;
+                font-family: poppins, sans-serif;
+                font-weight: 400;
+            }
+            main{
+                padding: 2rem;
+            }
             main header figure.logo{
-                background: url(imagenes/Cyberpunk\ \(2\).png) no-repeat center;
+                background: url(imagenes/Cyberpunk\ \(1\).png) no-repeat center;
                 margin:  0 auto;
                 width: 919px;
                 height: 354px;
             }
+            /*--------------*/
+            /*MEDIA QUERIES*/
+            /*--------------*/
+        @media (max-width: 990px){
+                main header figure.logo{
+                background: url(imagenes/Cyberpunk\ \(2\).png) no-repeat center;
+                margin:  0 auto;
+                width: 520px;
+                height: 208px;
+            }
         }
-        @media (max-width: 780px){
+        @media (max-width: 600px){
             main header figure.logo{
                 background: url(imagenes/Cyberpunk\ \(3\).png) no-repeat center;
                 margin:  0 auto;
-                width: 235px;
-                height: 156px;
+                width: 230px;
+                height: 128px;
             }
         }
-        body main section{
+        section {
             display: flex;
-            text-align: center;
             gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 80px auto;
             
         }
-        body main section p{
+        section div{
             background-color: #0009;
-            margin-top: 175px;
+            width: 200px;
+            position: relative;
+            height: 200px;
         }
-        body div.david{
+        section div p{
+            background-color: #fff9;
+            position: absolute;
+            text-align: center; 
+            color: black;
+            height: 40px;
+            transition: all 0.4s ease-in;
+            bottom: -16px;
+            width: 100%;
+        }
+        section div:hover p{
+            height: 70px;
+        }
+        div.david{
             background: url(imagenes/Martinez.jpg) no-repeat center;
             background-size: 200px;
-            width: 200px;
-            height: 200px;
         }
-        body div.lucy{
+        div.lucy{
             background: url(imagenes/lucy.jpg) no-repeat center;
             background-size: 200px;
-            width: 200px;
-            height: 200px;
         }
-        body div.gloria{
+        div.gloria{
             background: url(imagenes/gloriaM.jpg) no-repeat center;
             background-size: 200px;
-            width: 200px;
-            height: 200px;
         }
-        body div.maine{
+        div.maine{
             background: url(imagenes/maine.jpg) no-repeat center;
             background-size: 200px;
-            width: 200px;
-            height: 200px;
         }
         </style>
 </head>

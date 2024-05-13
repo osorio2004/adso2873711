@@ -6,26 +6,26 @@
     <title>animations</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
-        section div img.Steve{
+        section div img.Mario{
             position: relative;
             top: 0;
             left: 0px;
-            animation: 3s animSteve linear infinite;
+            animation: 3s aniMario linear infinite;
         }
-        section div img.Ender{
+        section div img.Map{
             position: relative;
             top: 0;
             left: 200px;
-            animation: 4s animEnder linear infinite;
+            animation: 4s aniMap linear infinite;
         }
-        @keyframes animSteve{ 
+        @keyframes aniMario{ 
             0%{left: 500px; transform: traslateX()}
             50% {left: 0px; transform: traslateX()}
             55% { left: 0px; transform: traslateX()}
             80% {left: 0px; transform: traslateY()}
             100% {top: 0px; transform: traslateX()}
         }
-        @keyframes animEnder{ 
+        @keyframes aniMap{ 
             100%  {left: -0px; transform: traslateY()}
             80% {left: -0px; transform: traslateY()}
             55%{ left: -0px; transform: traslateY()}
@@ -54,10 +54,10 @@
         <section class="section">
            <h3>example</h3>
            <div>
-           <img class="Steve" width="120" src="imagenes/Mario.webp" alt="">
+           <img class="Mario" width="120" src="imagenes/Mario.webp" alt="">
            </div>
            <div>
-           <img class="Ender" width="300" src="imagenes/mapa.png" alt="">
+           <img class="Map" width="300" src="imagenes/mapa.png" alt="">
            </div>
         </section>
     </main>
