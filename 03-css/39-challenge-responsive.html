@@ -6,131 +6,307 @@
         <title>Responsive Design (media queries)</title>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;800&display=swap');
-            *{
-                transition: all 0.2s ease-in;
-            }
-            body{
-                background-color: #1c1c68;
-                color: #fffc;
-                font-family: poppins, sans-serif;
-                font-weight: 400;
-            }
-            main{
-                padding: 2rem;
-            }
-            main header figure.logo{
-                background: url(imagenes/Cyberpunk\ \(1\).png) no-repeat center;
-                margin:  0 auto;
-                width: 919px;
-                height: 354px;
-            }
-            /*--------------*/
-            /*MEDIA QUERIES*/
-            /*--------------*/
-        @media (max-width: 990px){
-                main header figure.logo{
-                background: url(imagenes/Cyberpunk\ \(2\).png) no-repeat center;
-                margin:  0 auto;
-                width: 520px;
-                height: 208px;
-            }
-        }
-        @media (max-width: 600px){
-                main header figure.logo{
-                background: url(imagenes/Cyberpunk\ \(3\).png) no-repeat center;
-                margin:  0 auto;
-                width: 230px;
-                height: 128px;
-            }
-        }
-        section {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 0 80px auto;
-            
-        }
-        section div{
-            background-color: #0009;
-            width: 200px;
-            position: relative;
-            height: 200px;
-        }
-        section div p{
-            background-color: #fff9;
-            position: absolute;
-            text-align: center; 
-            color: black;
-            height: 40px;
-            transition: all 0.4s ease-in;
-            bottom: -16px;
-            width: 100%;
-        }
-        section div:hover p{
-            height: 70px;
-        }
-        div.david{
-            background: url(imagenes/Martinez.jpg) no-repeat center;
-            background-size: 200px;
-        }
-        div.lucy{
-            background: url(imagenes/lucy.jpg) no-repeat center;
-            background-size: 200px;
-        }
-        div.gloria{
-            background: url(imagenes/gloriaM.jpg) no-repeat center;
-            background-size: 200px;
-        }
-        div.maine{
-            background: url(imagenes/maine.jpg) no-repeat center;
-            background-size: 200px;
-        }
-        article{
+                * {
+                    transition: all 0.2s ease-in;
+                }
 
-        }
-        article.imagen1{
-            background: url(imagenes/david10.jpg) no-repeat;
-        }
-        article.imagen2{
-            background: url(imagenes/smasher.jpg) no-repeat;
-        }
-        article p{
-            height: 200px;
-            width: 500px;
-            line-height: 1.6rem;
-            margin: 5px 350px;
-            overflow: scroll;
-        }
+                body {
+                    background-color: #1c1c68;
+                }
+
+                main {
+                    padding: 3rem;
+                }
+
+                main.caja-cabecera {
+                    background: url(imagenes/Cyberpunk\ \(1\).png) no-repeat center;
+                    height: 150px;
+                    margin: 0 auto;
+                    width: 850px;
+
+                }
+
+                main nav.protas {
+                    display: flex;
+                    gap: 70px;
+                    justify-content: center;
+                    margin: 20px auto;
+                }
+
+                nav div.imagen1 {
+                    background: url(imagenes/Martinez.jpg) no-repeat center;
+                    background-size: 200px;
+                    border: 2px solid black;
+                    background-color: #887599;
+                    display: flex;
+                    flex-direction: column;
+                    height: 210px;
+                    justify-content: flex-end;
+                    position: relative;
+                    text-align: center;
+                    width: 200px;
+                }
+
+                nav div.imagen2 {
+                    background: url(imagenes/lucy.jpg) no-repeat center;
+                    background-size: 200px;
+                    border: 2px solid black;
+                    background-color: #58589b;
+                    display: flex;
+                    flex-direction: column;
+                    height: 210px;
+                    justify-content: flex-end;
+                    position: relative;
+                    text-align: center;
+                    width: 200px;
+                }
+
+                nav div.imagen3 {
+                    background: url(imagenes/Maine.jpg) no-repeat center;
+                    background-size: 200px;
+                    border: 2px solid black;
+                    background-color: #574e4e;
+                    display: flex;
+                    flex-direction: column;
+                    height: 210px;
+                    justify-content: flex-end;
+                    position: relative;
+                    text-align: center;
+                    width: 200px;
+
+                }
+
+                nav div.imagen4 {
+                    background: url(imagenes/gloriaM.jpg) no-repeat center;
+                    background-size: 200px;
+                    border: 2px solid black;
+                    background-color: #804e3e;
+                    display: flex;
+                    flex-direction: column;
+                    height: 210px;
+                    justify-content: flex-end;
+                    position: relative;
+                    text-align: center;
+                    width: 200px;
+                }
+
+                nav div.seinen {
+                    flex-direction: column;
+                    justify-content: center;
+                    display: flex;
+                    background-color: #000000a4;
+                    height: 60px;
+                    color: rgb(179, 141, 209);
+                    font-size: 2rem;
+                    transition: all 0.4s ease-in;
+                }
+
+                div.seinen:hover {
+                    background-color: #1c1c6893;
+                    height: 100px;
+                }
+
+                nav.antagon {
+                    border-radius: 1px;
+                    margin: 100px auto;
+
+                }
+
+                nav div.sec3 {
+                    display: flex;
+                    justify-content: center;
+
+                }
+
+                nav div.img1 {
+                    background: url(imagenes/david10.jpg) no-repeat center;
+                    background-color: rgba(150, 58, 74, 0.637);
+                    border: 2px solid whitesmoke;
+                    height: 210px;
+                    margin: 20px 20px 20px 80px;
+                    width: 200px;
+
+                }
+
+                nav div.img2 {
+                    background: url(imagenes/smasher.jpg) no-repeat center;
+                    background-color: rgba(168, 10, 10, 0.705);
+                    border: 2px solid whitesmoke;
+                    height: 210px;
+                    margin: 20px 20px 20px 80px;
+                    width: 200px;
+                }
+
+                div.texto {
+                    display: block;
+                }
+
+                nav p {
+                    align-items: center;
+                    color: aliceblue;
+                    margin: 20px;
+                    text-align: justify;
+                    width: 600px;
+                }
+
+                h1 {
+                    color: azure;
+                    margin: 20px;
+                }
+
+                h1:hover {
+                    color: red;
+                }
+
+                @media (max-width: 1024px) {
+
+                    main.caja-cabecera {
+                        background: url(imagenes/Cyberpunk\ \(2\).png) no-repeat center;
+                        height: 370px;
+                        margin-top: -100px;
+                        width: 450px;
+                    }
+
+                    main nav.protas {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        justify-items: center;
+                        margin: 0 auto;
+                    }
+
+                    nav div.imagen1,
+                    nav div.imagen2,
+                    nav div.imagen3,
+                    nav div.imagen4 {
+                        height: 210px;
+                        width: 200px;
+                    }
+
+                    nav div.img1,
+                    nav div.img2 {
+                        margin: 20px 20px 20px 80px auto;
+                        width: 200px;
+                    }
+
+                    nav div.sec3 {
+                        display: flex;
+                    }
+
+
+                    nav p {
+                        box-sizing: border-box;
+                        height: 145px;
+                        overflow-y: scroll;
+                        text-align: justify;
+                        width: 250px;
+                    }
+
+                    h1 {
+                        text-align: justify;
+                        text-align: center;
+                    }
+
+
+                }
+
+                @media (max-width: 780px) {
+                    
+                    main.caja-cabecera {
+                        background: url(imagenes/Cyberpunk\ \(3\).png) no-repeat center;
+                        height: 200px;
+                        margin-top: 10px;
+                        width: 200px;
+                    }
+
+                    main nav.protas {
+                        display: grid;
+                        justify-items: center;
+                        grid-template-columns: 1fr;
+                    }
+
+                    nav div.sec3 {
+                        display: grid;
+                    }
+
+                    nav.antagon {
+                        justify-content: center;
+                    }
+
+                    nav div.img1,
+                    nav div.img2 {
+                        margin: 0 auto;
+                    }
+
+                    nav p {
+                        box-sizing: border-box;
+                        height: 200px;
+                        justify-content: center;
+                        overflow-y: scroll;
+                        text-align: justify;
+                        width: 200px;
+                    }
+
+                    h1 {
+                        text-align: justify;
+                        text-align: center;
+                    }
+                }
         </style>
 </head>
 <body>
-    <main>
-        <header>
-            <figure class="logo"></figure>
-        </header>
-        <section>
-            <div class="david">
-                <p>david martinez</p>
+    <main class="caja-general">
+        <main class="caja-cabecera"></main>
+        <nav class="protas">
+            <div class="imagen1">
+                <div class="seinen">Martinez</div>
             </div>
-            <div class="lucy">
-                <p>lucy</p>
+
+            <div class="imagen2">
+                <div class="seinen">lucy</div>
             </div>
-            <div class="gloria">
-                <p>gloria martinez</p>
+
+            <div class="imagen3">
+                <div class="seinen">maine</div>
             </div>
-            <div class="maine">
-                <p>maine</p>
-            </div>           
-        </section>
-        <article class="imagen1">
-            <h2>david martinez</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus officiis quisquam eveniet voluptatem blanditiis similique veniam, odio ducimus ex id nesciunt distinctio. Eius saepe distinctio ipsum qui aut odio facere obcaecati incidunt deleniti rem quas, nemo, quibusdam ullam sed molestiae doloribus praesentium nisi non placeat recusandae veritatis a? Eveniet quasi deleniti explicabo impedit iure ipsam, animi itaque, alias id voluptas maiores nesciunt magni placeat voluptatibus aperiam qui ullam deserunt dolorum. Asperiores quibusdam aliquid quasi incidunt dolores cupiditate provident at, ullam nam itaque harum minus, illum architecto, accusamus eligendi deserunt? Illo suscipit tempora, aut quod molestiae vero accusamus culpa voluptatibus quasi.</p>
-        </article>
-        <article class="imagen2">
-            <h2>smasher</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur expedita nisi eveniet et ullam possimus doloremque necessitatibus alias saepe autem quae, ducimus, hic doloribus officia est maiores soluta quia sint, sed aliquam blanditiis omnis ipsam! Nisi ipsa eaque ipsam culpa quia temporibus ea molestias eum perspiciatis reiciendis laudantium ab fuga, sint neque cum quidem dolor. Fuga eius asperiores qui iusto facilis. Labore in unde minima ullam, cumque eum ut soluta voluptate architecto animi. Praesentium vitae atque adipisci, veniam reiciendis expedita quos corrupti error nobis? Suscipit mollitia reiciendis, nobis quod tenetur qui? Exercitationem nam ad obcaecati consequuntur blanditiis, saepe voluptatum quod!</p>
-        </article>
+
+            <div class="imagen4">
+                <div class="seinen">gloria Martinez</div>
+            </div>
+        </nav>
+        <nav class="antagon">
+            <div class="sec3">
+                <div class="img1">
+                    <div class="villian"></div>
+                </div>
+                <div class="texto">
+                    <h1>DAVID MARTINEZ</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo tempora cupiditate qui
+                        aperiam
+                        vero, doloribus quaerat incidunt nesciunt ad voluptatem inventore veniam, optio nihil non earum
+                        exercitationem eveniet, ullam veritatis. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Harum, facere pariatur. Recusandae consectetur minus corrupti laboriosam at dicta iure assumenda
+                        unde veniam dolor, temporibus quos, corporis, a debitis omnis? Dolores.
+                    </p>
+                </div>
+            </div>
+            <div class="sec3">
+                <div class="img2">
+                    <div class="villian"></div>
+                </div>
+                <div class="texto">
+                    <h1>ADAM SMASHER</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo tempora cupiditate qui
+                        aperiam
+                        vero, doloribus quaerat incidunt nesciunt ad voluptatem inventore veniam, optio nihil non earum
+                        exercitationem eveniet, ullam veritatis. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Harum, facere pariatur. Recusandae consectetur minus corrupti laboriosam at dicta iure assumenda
+                        unde veniam dolor, temporibus quos, corporis, a debitis omnis? Dolores.
+                    </p>
+                </div>
+            </div>
+        </nav>
     </main>
 </body>
 </html>
