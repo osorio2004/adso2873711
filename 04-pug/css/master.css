@@ -112,7 +112,7 @@ main {
         width: 400px;
         h3 {
             border-bottom: 2px dotted #ffffff;
-            color: 0006;
+            color: #fff;
             font-size: 1.4rem;
             margin: 0;
             width: fit-content;
