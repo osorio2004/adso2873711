@@ -4,7 +4,7 @@ body {background-color: #FC6998;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23cc0fc2' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23ffc1d5' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23d610cc' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23ed9ec0' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23e011d5' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23d87bae' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23ea11df' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23c1589f' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23f512e9' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23a63492' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23ff13f3' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880088' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
     background-attachment: fixed;
     background-size: cover;
-    font-family: Poppins, serif;
+    font-family: Poppins, sans-serif;
     color: white;
 }
 
@@ -46,7 +46,7 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        h1,  h2 {
+        h1, h2 {
             color: rgb(255, 255, 255);
             text-align: center;
             margin: 0;
@@ -61,6 +61,7 @@ main {
         }
         img{
             border-radius: 50%;
+            object-fit: contain;
             width: 160px;
             height: 160px;
             border: 10px solid #0009;
