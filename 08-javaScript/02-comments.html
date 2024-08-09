@@ -19,7 +19,7 @@
         <header>
             <h1>02-comments</h1>
             <h2>
-                dos formas de agregar comentarios en el codigo.
+                Dos formas de agregar comentarios en el codigo.
             </h2>
         </header>
         <section class="content">
@@ -35,6 +35,7 @@
         */
         const today = document.querySelector('.today')
         var ndate   = new Date() //ndate is Date type
+        console.log(ndate)
         today.textContent = 'TODAY' + ndate.getDate() 
                               + '/' + (ndate.getMonth()+1) 
                               + '/' + (ndate.getFullYear())
