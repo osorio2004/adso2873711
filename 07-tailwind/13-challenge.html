@@ -3,29 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge</title>
-    <link rel="stylesheet" href="../07-tailwind/css/master.css">
+    <title>Challenge Juan Andres O</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        
+        .section {
+            display: none;
+        }
+
+        .section:target {
+            display: block;
+        }
+
+        /* Para mostrar la primera sección por defecto */
+        #section1:target ~ #section1,
+        body:not(:has(:target)) #section1 {
+            display: block;
+        }
     </style>
 </head>
-<body>
-    <nav class="controls">
-        <a href="../07-tailwind/index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-        </a>
-    </nav>
-    <main>
-        <header>
-            <h1>Challenge</h1>
-            <h2>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde sequi neque itaque enim ad error, at aliquam maiores id voluptatibus commodi similique suscipit. Incidunt quaerat eos, voluptatem est modi omnis?            
-            </h2>
-        </header>
-        <section class="content">
-            
-        </section>
-    </main>
+
+<body class="flex items-center justify-center min-h-screen bg-[url(images/descarga.jfif)] bg-no-repeat bg-cover">
+
+    <!-- Primera sección -->
+    <section id="section1" class="section bg-green-800 rounded-[30px] p-8 w-96">
+        <div class="mb-8 justify-center items-center">
+            <img src="images/Halo-infinite GOD 1.png" alt="Master Chief" class="">
+        </div>
+        <h2 class="text-center font-bold uppercase rounded-[20px] bg-orange-500 text-black py-4 flex justify-center">Halo infinite</h2>
+        <p class="text-center mt-20">Are you ready to have fun with this great title?</p>
+        <div class="text-center mt-20">
+            <a href="#section2" class="bg-orange-500 text-white py-4 px-5 rounded-full inline-block text-sm">Get started</a>
+        </div>
+    </section>
+
+    <!-- Segunda sección -->
+    <section id="section2" class="section bg-green-800 rounded-[30px] p-8 w-96">
+        <div class="flex items-center mb-4">
+            <a href="#section1" class="mr-2">
+                <img src="images/arrow_back_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" width="40" alt="flecha">
+            </a>
+            <h2 class="font-bold text-black">Logros nivel: MEDIO</h2>
+        </div>
+        <div class="space-y-4">
+            <div class="flex items-center">
+                <div class="rounded-full bg-gray-200 flex items-center justify-center mr-2 mt-5 h-[40px] w-[40px]">0%</div>
+                <div>
+                    <p class="font-semibold">Mata X cantidad de elites</p>
+                </div>
+            </div>
+            <div class="mb-4 flex justify-center">
+                <img src="images/Covenant 1.png" alt="Covenant" class=" object-cover">
+            </div>
+            <div class="flex items-center">
+                <div class="rounded-full bg-gray-200 flex items-center justify-center mr-2 mt-5 h-[40px] w-[40px]">0%</div>
+                <div>
+                    <p class="font-semibold">Montate en un Warthog</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="rounded-full bg-gray-200 flex items-center justify-center mr-2 mt-5 h-[40px] w-[40px]">0%</div>
+                <div>
+                    <p class="font-semibold">Mata a X cantidad de Grunts con un Scorpion</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="rounded-full bg-gray-200 flex items-center justify-center mr-2 mt-5 h-[40px] w-[40px]">0%</div>
+                <div>
+                    <p class="font-semibold">Mata a X cantidad de Grunts</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="#section3" class="bg-orange-500 text-white py-4 px-7 mt-20 rounded-full inline-block">Next</a>
+        </div>
+    </section>
+
+    <!-- Tercera sección -->
+    <section id="section3" class="section bg-green-800 rounded-[30px] p-8 w-96">
+        <div class="flex items-center mb-4">
+            <a href="#section2" class="mr-2">
+                <img src="images/arrow_back_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" width="40" alt="flecha">
+            </a>
+            <h2 class="font-bold text-white">Nivel de dificultad del juego</h2>
+        </div>
+        <div class="bg-black text-white p-4 rounded-lg mb-20 h-65">
+            <div class="flex justify-center mb-8">
+                <span>Nivel de dificultad: FACIL</span>
+            </div>
+            <div class="flex justify-center mb-8">
+                <span>Nivel de dificultad: NORMAL</span>
+            </div>
+            <div class="flex justify-center mb-8">
+                <span>Nivel de dificultad: HEROE</span>
+            </div>
+            <div class="flex justify-center">
+                <span>Nivel de dificultad: LEYENDA</span>
+            </div>
+        </div>
+        <p class="flex text-center text-white italic mb-20">Each level will decide how good you are at the game.</p>
+        <div class="text-center">
+            <a href="#section1">
+                <button class="bg-orange-500 text-white py-3 px-4 rounded-full ">Download it now</button>
+            </a>
+        </div>
+    </section>
+
 </body>
 </html>
