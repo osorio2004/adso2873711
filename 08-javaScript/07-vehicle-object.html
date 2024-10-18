@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <title>vehicle object</title>
+    <style>
+        
+        section {
+            background-color: #F77463;
+        }
+        section div.header {
+            align-items: center;
+            display: flex;
+        }
+
+        section div.header button.btn-hidden {
+            visibility: hidden;
+        }
+
+        section div.header button {
+            position: relative;
+            border: none;
+            cursor: pointer;
+            height: 50px;
+            width: 40px;
+            top: 5px;
+            left: 20px;
+        }
+
+        .titulo-velocistas{
+            position: relative;
+            left: -35px;
+
+        }
+        
+        .btn-light {
+            background: transparent url(images/btn-mode-moon.svg) no-repeat;
+
+        }
+
+
+        .attributes-contain {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            top: -25px;
+            background-image: url('imagen/07-obj/bgd-flash.svg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .atributos {
+            position: relative;
+            z-index: 1;
+            top: 40px;
+            left: 30px;
+        }
+
+        .brand {
+            font-size: small;
+            position: relative;
+            left: -60px;
+            top: -5px;
+        }
+
+        section div.landscape {
+            background-color: #fff9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            height: 260px;
+            margin: 0 auto;
+            width: 374px;
+        }
+        section div.landscape button {
+            border: none;
+            cursor: pointer;
+            height: 44px;
+            width: 44px;
+        }
+        section div.landscape button.btn-prev {
+            background: url(/08-jscript/imagen/07-obj/boton-prew.svg) no-repeat;
+            background-position: 5px;
+            background-color: #F77463;
+            border-radius: 0 50px 50px 0;
+        }
+        section div.landscape button.btn-next { 
+            background: url(/08-jscript/imagen/07-obj/boton-next.svg) no-repeat;
+            background-position: 5px;
+            background-color: #F77463;
+            border-radius: 50px 0 0 50px;
+            align-items: center;
+        }
+        section .img-metodos{
+            text-align: center;
+            margin-top: 5px;
+        }
+        section img.image{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: 50px;
+        }
+        section div.methods {
+            background-color: #8C1D1F;
+            width: 379px;
+            height: 67px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+        section div.methods button {
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            height: 47px;
+            width: 40px;
+        }
+        section .botones{
+            margin-left: 20px;
+            margin-bottom: 8px;
+        }
+        section div.methods button.btn-on {
+            background: url(imagen/07-obj/metodos/on.svg) no-repeat;
+            margin-right: 10px;
+        }
+        section div.methods button.btn-fwd {
+            background: url(imagen/07-obj/metodos/go.svg) no-repeat;
+            margin-left: 10px;
+            margin-right: 10px ;
+        }
+        section div.methods button.btn-stop {
+            background: url(imagen/07-obj/metodos/stop.svg) no-repeat;
+            margin: 10px;
+        }
+        section div.methods button.btn-bwd {
+            background: url(imagen/07-obj/metodos/back.svg) no-repeat;
+            margin: 10px;
+        }
+        section div.methods button.btn-off {
+            background: url(imagen/07-obj/metodos/stop.svg) no-repeat;
+            margin: 10px;
+        }
+        section{
+            transition: all 3s ease-in;
+        }
+
+        /*dark mode*/
+        section.dark{
+            div.atributes{
+                background: url(images/);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>vehicle object</h1>
+            <h2>
+                            
+            </h2>
+        </header>
+        <section>
+            <div class="header">
+                <button class="btn-hidden"></button>
+                <div class="titulo-velocistas">
+                    <img src="images/btn-objectV-dark.svg">
+                </div>
+                <button class="btn-light"></button>
+            </div>
+            <div class="attributes-contain">
+                <div class="attributos"><img src="images/Atributes-dark.svg" alt="">
+                    <span class="brand"></span>
+                    <span class="refer"></span>
+                    <span class="model"></span>
+                    <span class="color"></span>
+                </div>
+            </div>
+            <img src="" alt="">
+            <div class="landscape">
+                <button class="btn-prev"></button>
+                <button class="btn-next"></button>
+            </div>
+            <div class="methods">
+                <button class="btn-on"></button>
+                <button class="btn-fwd"></button>
+                <button class="btn-stop"></button>
+                <button class="btn-off"></button>
+            </div>
+        </section>
+    </main>
+    <script>
+
+        const btnMode = document.querySelector('.btn-mode')
+        const section = document.querySelector('section')
+        
+        const brand = document.querySelector('.brand')
+        const refer = document.querySelector('.refer')
+        const model = document.querySelector('.model')
+        const color = document.querySelector('.color')
+        const image = document.querySelector('.image')
+
+        btnMode.addEventListener('click', function() {
+            vehicle.mode()
+        })
+
+        const vehicle = {
+            attributes: [
+                { brand: 'suzuki',refer: 'AX100',model: '2020',color: 'verde', image:"vehicle/car01.png"},
+                { brand: '',refer: '',model: '',color: '', image:"vehicle/car01.png"},
+                { brand: '',refer: '',model: '',color: '', image:"vehicle/car01.png"},
+                { brand: '',refer: '',model: '',color: '', image:"vehicle/car01.png"},
+                { brand: '',refer: '',model: '',color: '', image:"vehicle/car01.png"},
+            ],  
+            mode: function() {
+                section.classList.toggle('dark')
+            },
+            detectMode: function(){
+                if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                    section.classList.add('dark')
+                }else{
+                    section.classList.remove('dark')
+                }
+            },
+            showAttributos: function(i){
+                brand.textContent = this.attributes[i].brand
+                refer.textContent = this.attributes[i].refer
+                model.textContent = this.attributes[i].model
+                color.textContent = this.attributes[i].color
+                image.setAttribute('src', this.attributes[i].image)
+            }
+        }
+        vehicle.showAttributos(0)
+        window.matchesMedia('(prefers-color-scheme: dark)').addEventListener('change',vehicle.detectMode())
+    </script>
+</body>
+</html>
