@@ -1,18 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>13- Challenge</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
+        div.calculator {
+            background: url(imagesCalculadoraL/Calculator/Rectangle\ 1.svg) no-repeat center;
+            height: 610px;
+            margin: 1rem auto;
+            width: 360px;
+        }
 
+        header.display {
+            position: relative;
+            height: 170px;
+
+            img.mode {
+                object-fit: contain;
+                background-color: transparent;
+                border-radius: 0;
+                width: 100px;
+                height: 36px;
+                border: none;
+                position: absolute;
+                top: 8px;
+                transition: transform 0.4s ease-in;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(0.98);
+                }
+            }
+
+            input.operation {
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                font-size: 18px;
+                font-family: Poppins, sans-serif;
+                font-weight: 500;
+                top: 94px;
+                text-align: right;
+                right: 14px;
+                width: 326px;
+            }
+
+            h4.result {
+                color: #323330;
+                position: absolute;
+                font-size: 40px;
+                font-weight: 600;
+                margin: 0;
+                top: 120px;
+                text-align: right;
+                right: 14px;
+            }
+
+            footer.buttons {
+                margin-top: 200px;
+                display: grid;
+                grid-template-columns: repeat(4, 80px);
+                justify-content: center;
+                gap: 0.2rem;
+                place-items: center;
+
+                button {
+                    transition: transform 0.4s ease-in;
+                    border: none;
+                    cursor: pointer;
+                    width: 80px;
+                    height: 80px;
+
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.05);
+                    }
+
+                    &.btn-clear {
+                        background: url(imagesCalculadoraL/Calculator/Button.svg) no-repeat;
+                    }
+
+                    &.btn-back {
+                        background: url(imagesCalculadoraL/Calculator/Button-1.svg) no-repeat;
+                    }
+
+                    &.btn-pow {
+                        background: url(imagesCalculadoraL/Calculator/Button-2.svg) no-repeat;
+                    }
+
+                    &.btn-mod {
+                        background: url(imagesCalculadoraL/Calculator/Button-3.svg) no-repeat;
+                    }
+
+                    &.btn-1 {
+                        background: url(imagesCalculadoraL/Calculator/Button-one.svg) no-repeat;
+                    }
+
+                    &.btn-2 {
+                        background: url(imagesCalculadoraL/Calculator/Button-dos.svg) no-repeat;
+                    }
+
+                    &.btn-3 {
+                        background: url(imagesCalculadoraL/Calculator/Button-tres.svg) no-repeat;
+                    }
+
+                    &.btn-prod {
+                        background: url(imagesCalculadoraL/Calculator/Button-7.svg) no-repeat;
+                    }
+
+                    &.btn-4 {
+                        background: url(imagesCalculadoraL/Calculator/Button-cuatro.svg) no-repeat;
+                    }
+
+                    &.btn-5 {
+                        background: url(imagesCalculadoraL/Calculator/Button-cinco.svg) no-repeat;
+                    }
+
+                    &.btn-6 {
+                        background: url(imagesCalculadoraL/Calculator/Button-seis.svg) no-repeat;
+                    }
+
+                    &.btn-subs {
+                        background: url(imagesCalculadoraL/Calculator/Button-11.svg) no-repeat;
+                    }
+
+                    &.btn-7 {
+                        background: url(imagesCalculadoraL/Calculator/Button-siete.svg) no-repeat;
+                    }
+
+                    &.btn-8 {
+                        background: url(imagesCalculadoraL/Calculator/Button-ocho.svg) no-repeat;
+                    }
+
+                    &.btn-9 {
+                        background: url(imagesCalculadoraL/Calculator/Button-nueve.svg) no-repeat;
+                    }
+
+                    &.btn-add {
+                        background: url(imagesCalculadoraL/Calculator/Button-15.svg) no-repeat;
+                    }
+
+                    &.btn-div {
+                        background: url(imagesCalculadoraL/Calculator/Button-16.svg) no-repeat;
+                    }
+
+                    &.btn-0 {
+                        background: url(imagesCalculadoraL/Calculator/Button-cero.svg) no-repeat;
+                    }
+
+                    &.btn-dot {
+                        background: url(imagesCalculadoraL/Calculator/Button-18.svg) no-repeat;
+                    }
+
+                    &.btn-equal {
+                        background: url(imagesCalculadoraL/Calculator/Button-19.svg) no-repeat;
+                    }
+                }
+            }
+
+            div.calculator {
+                background: url(imagesCalculadoraD/Rectangle\ 2\ \(1\).svg) no-repeat center;
+
+                header.display {
+                    button-mode {
+                        background: url(imagesCalculadoraD/Calculator/Toggle.svg);
+                    }
+
+                    input.operation {
+                        color: #fff;
+                    }
+
+                    h4.result {
+                        color: #fff;
+                    }
+                }
+
+                footer.buttons {
+                    button {
+                        &.btn-clear {
+                            background: url(imagesCalculadoraD/Calculator/Button.svg) no-repeat;
+                        }
+
+                        &.btn-back {
+                            background: url(imagesCalculadoraD/Calculator/Button-1.svg) no-repeat;
+                        }
+
+                        &.btn-pow {
+                            background: url(imagesCalculadoraD/Calculator/Button-2.svg) no-repeat;
+                        }
+
+                        &.btn-mod {
+                            background: url(imagesCalculadoraD/Calculator/Button-3.svg) no-repeat;
+                        }
+
+                        &.btn-1 {
+                            background: url(imagesCalculadoraD/Calculator/Button-one.svg) no-repeat;
+                        }
+
+                        &.btn-2 {
+                            background: url(imagesCalculadoraD/Calculator/Button-two.svg) no-repeat;
+                        }
+
+                        &.btn-3 {
+                            background: url(imagesCalculadoraD/Calculator/Button-tree.svg) no-repeat;
+                        }
+
+                        &.btn-prod {
+                            background: url(imagesCalculadoraD/Calculator/Button-7.svg) no-repeat;
+                        }
+
+                        &.btn-4 {
+                            background: url(imagesCalculadoraD/Calculator/Button-cuatro.svg) no-repeat;
+                        }
+
+                        &.btn-5 {
+                            background: url(imagesCalculadoraD/Calculator/Button-cinco.svg) no-repeat;
+                        }
+
+                        &.btn-6 {
+                            background: url(imagesCalculadoraD/Calculator/Button-seis.svg) no-repeat;
+                        }
+
+                        &.btn-subs {
+                            background: url(imagesCalculadoraD/Calculator/Button-11.svg) no-repeat;
+                        }
+
+                        &.btn-7 {
+                            background: url(imagesCalculadoraD/Calculator/Button-siete.svg) no-repeat;
+                        }
+
+                        &.btn-8 {
+                            background: url(imagesCalculadoraD/Calculator/Button-ocho.svg) no-repeat;
+                        }
+
+                        &.btn-9 {
+                            background: url(imagesCalculadoraD/Calculator/Button-nueve.svg) no-repeat;
+                        }
+
+                        &.btn-add {
+                            background: url(imagesCalculadoraD/Calculator/Button-15.svg) no-repeat;
+                        }
+
+                        &.btn-div {
+                            background: url(imagesCalculadoraD/Calculator/Button-16.svg) no-repeat;
+                        }
+
+                        &.btn-0 {
+                            background: url(imagesCalculadoraD/Calculator/Button-cero.svg) no-repeat;
+                        }
+
+                        &.btn-dot {
+                            background: url(imagesCalculadoraD/Calculator/Button-18.svg) no-repeat;
+                        }
+
+                        &.btn-equal {
+                            background: url(imagesCalculadoraD/Calculator/Button-19.svg) no-repeat;
+                        }
+                    }
+                }
+            }
+        }
     </style>
 </head>
+
 <body>
     <nav class="controls">
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
@@ -21,8 +282,109 @@
             <h2>Calculator</h2>
         </header>
         <section>
+            <div class="calculator">
+                <header class="display">
+                    <img src="imagesCalculadoraL/Calculator/Toggle.svg" alt="Mode" class="mode">
+                    <input type="text" class="operation" value="30 x 4 / 2" readonly>
+                    <h4 class="result">12.936</h4>
+                    <footer class="buttons">
+                        <button class="btn-clear"></button>
+                        <button class="btn-back"></button>
+                        <button class="btn-pow" data-opr="**"></button>
+                        <button class="btn-mod" data-opr="%"></button>
 
+                        <button class="btn-1" data-num="1"></button>
+                        <button class="btn-2" data-num="2"></button>
+                        <button class="btn-3" data-num="3"></button>
+                        <button class="btn-prod" data-opr="*"></button>
+
+                        <button class="btn-4" data-num="4"></button>
+                        <button class="btn-5" data-num="5"></button>
+                        <button class="btn-6" data-num="6"></button>
+                        <button class="btn-subs" data-opr="-"></button>
+
+                        <button class="btn-7" data-num="7"></button>
+                        <button class="btn-8" data-num="8"></button>
+                        <button class="btn-9" data-num="9"></button>
+                        <button class="btn-add" data-opr="+"></button>
+
+                        <button class="btn-div" data-opr="/"></button>
+                        <button class="btn-0" data-num="0"></button>
+                        <button class="btn-dot" data-opr="."></button>
+                        <button class="btn-equal" data-opr="="></button>
+
+
+                    </footer>
+                </header>
+            </div>
         </section>
     </main>
+    V// isDarkMode
+    const calculator = document.querySelector('.calculator')
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+    function detectMode() {
+        if(isDarkMode.matches) {
+            calculator.classList.add('dark')
+            //console.log('Mode: Dark')
+        } else {
+            calculator.classList.remove('dark')
+            //console.log('Mode: Light')
+        }
+    }
+    detectMode()
+    isDarkMode.addListener(detectMode)
+
+<script>
+    // isDarkMode
+    const calculator = document.querySelector('.calculator')
+    const btnMode    = document.querySelector('.mode')
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+    function detectMode() {
+        if(isDarkMode.matches) {
+            calculator.classList.add('dark')
+            //console.log('Mode: Dark')
+        } else {
+            calculator.classList.remove('dark')
+            //console.log('Mode: Light')
+        }
+    }
+    detectMode()
+    isDarkMode.addListener(detectMode)
+    btnMode.addEventListener('click', () => {
+        calculator.classList.toggle('dark')
+    })
+    
+    // Buttons Actions - - - - - - - - - - -
+    const btnsNumbers = document.querySelectorAll('button[data-num]')
+        const btnsOpers   = document.querySelectorAll('button[data-opr]')
+        const btnClear    = document.querySelector('.btn-clear')
+        const btnBack     = document.querySelector('.btn-back')
+        const btnEqual    = document.querySelector('.btn-equal')
+        const operation   = document.querySelector('.operation')
+ 
+        function addToOperation(c) {
+            if(validateLength()) {
+                operation.value += c
+            }
+        }
+ 
+        function validateLength() {
+            if(operation.value.length < 28) {
+                return true
+            } else {
+                return false
+            }
+        }
+ 
+        btnsNumbers.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                addToOperation(btn.dataset.num)
+            })
+        })
+ 
+        btnClear.addEventListener('click', () => {
+            operation.value = ''
+        })
+</script>
 </body>
 </html>
