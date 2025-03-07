@@ -8,59 +8,59 @@
     <link rel="stylesheet" href="css/master.css">
     <style>
         div.calculator {
-            background: url(imagesCalculadoraL/Calculator/Rectangle\ 1.svg) no-repeat center;
+            background-color: grey;
             height: 610px;
             margin: 1rem auto;
             width: 360px;
-        }
 
-        header.display {
-            position: relative;
-            height: 170px;
+            header.display {
+                position: relative;
+                height: 170px;
 
-            img.mode {
-                object-fit: contain;
-                background-color: transparent;
-                border-radius: 0;
-                width: 100px;
-                height: 36px;
-                border: none;
-                position: absolute;
-                top: 8px;
-                transition: transform 0.4s ease-in;
+                button.mode {
+                    background: url(imagesCalculadoraL/Calculator/Toggle.svg) no-repeat center;
+                    border: none;
+                    height: 36px;
+                    position: absolute;
+                    transition: transform 0.4s ease-in;
+                    top: 8px;
+                    width: 100px;
 
-                &:hover {
-                    cursor: pointer;
-                    transform: scale(0.98);
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.1);
+                    }
+                }
+
+                input.result {
+                    background-color: transparent;
+                    border: none;
+                    color: #000;
+                    outline: none;
+                    position: absolute;
+                    font-size: 18px;
+                    font-family: Poppins, sans-serif;
+                    font-weight: 500;
+                    top: 94px;
+                    text-align: right;
+                    right: 14px;
+                    width: 326px;
+                }
+
+                h5.operation {
+                    color: #000;
+                    position: absolute;
+                    font-size: 40px;
+                    font-weight: 600;
+                    margin: 0;
+                    top: 120px;
+                    text-align: right;
+                    right: 14px;
                 }
             }
 
-            input.operation {
-                background-color: transparent;
-                border: none;
-                position: absolute;
-                font-size: 18px;
-                font-family: Poppins, sans-serif;
-                font-weight: 500;
-                top: 94px;
-                text-align: right;
-                right: 14px;
-                width: 326px;
-            }
-
-            h4.result {
-                color: #323330;
-                position: absolute;
-                font-size: 40px;
-                font-weight: 600;
-                margin: 0;
-                top: 120px;
-                text-align: right;
-                right: 14px;
-            }
-
             footer.buttons {
-                margin-top: 200px;
+                margin-top: 0.8rem;
                 display: grid;
                 grid-template-columns: repeat(4, 80px);
                 justify-content: center;
@@ -160,20 +160,22 @@
                     }
                 }
             }
+        }
 
+        @media (prefers-color-scheme: dark) {
             div.calculator {
                 background: url(imagesCalculadoraD/Rectangle\ 2\ \(1\).svg) no-repeat center;
 
                 header.display {
-                    button-mode {
-                        background: url(imagesCalculadoraD/Calculator/Toggle.svg);
+                    button.mode {
+                        background: url(imagesCalculadoraD/Calculator/Toggle.svg)no-repeat center;
                     }
 
-                    input.operation {
+                    input.result {
                         color: #fff;
                     }
 
-                    h4.result {
+                    h5.operation {
                         color: #fff;
                     }
                 }
@@ -284,107 +286,92 @@
         <section>
             <div class="calculator">
                 <header class="display">
-                    <img src="imagesCalculadoraL/Calculator/Toggle.svg" alt="Mode" class="mode">
-                    <input type="text" class="operation" value="30 x 4 / 2" readonly>
-                    <h4 class="result">12.936</h4>
-                    <footer class="buttons">
-                        <button class="btn-clear"></button>
-                        <button class="btn-back"></button>
-                        <button class="btn-pow" data-opr="**"></button>
-                        <button class="btn-mod" data-opr="%"></button>
-
-                        <button class="btn-1" data-num="1"></button>
-                        <button class="btn-2" data-num="2"></button>
-                        <button class="btn-3" data-num="3"></button>
-                        <button class="btn-prod" data-opr="*"></button>
-
-                        <button class="btn-4" data-num="4"></button>
-                        <button class="btn-5" data-num="5"></button>
-                        <button class="btn-6" data-num="6"></button>
-                        <button class="btn-subs" data-opr="-"></button>
-
-                        <button class="btn-7" data-num="7"></button>
-                        <button class="btn-8" data-num="8"></button>
-                        <button class="btn-9" data-num="9"></button>
-                        <button class="btn-add" data-opr="+"></button>
-
-                        <button class="btn-div" data-opr="/"></button>
-                        <button class="btn-0" data-num="0"></button>
-                        <button class="btn-dot" data-opr="."></button>
-                        <button class="btn-equal" data-opr="="></button>
-
-
-                    </footer>
+                    <button class="mode"></button>
+                    <input type="text" class="result" value="30 x 4 / 2" readonly>
+                    <h5 class="operation">12.936</h5>
                 </header>
+                <footer class="buttons">
+                    <button class="btn-clear"></button>
+                    <button class="btn-back"></button>
+                    <button class="btn-pow" data-opr="**"></button>
+                    <button class="btn-mod" data-opr="%"></button>
+                    <!--  -->
+                    <button class="btn-1" data-num="1"></button>
+                    <button class="btn-2" data-num="2"></button>
+                    <button class="btn-3" data-num="3"></button>
+                    <button class="btn-prod" data-opr="*"></button>
+                    <!--  -->
+                    <button class="btn-4" data-num="4"></button>
+                    <button class="btn-5" data-num="5"></button>
+                    <button class="btn-6" data-num="6"></button>
+                    <button class="btn-subs" data-opr="-"></button>
+                    <!--  -->
+                    <button class="btn-7" data-num="7"></button>
+                    <button class="btn-8" data-num="8"></button>
+                    <button class="btn-9" data-num="9"></button>
+                    <button class="btn-add" data-opr="+"></button>
+                    <!--  -->
+                    <button class="btn-div" data-opr="/"></button>
+                    <button class="btn-0" data-num="0"></button>
+                    <button class="btn-dot" data-opr="."></button>
+                    <button class="btn-equal" data-opr="="></button>
+                    <!--  -->
+                </footer>
             </div>
         </section>
     </main>
-    V// isDarkMode
-    const calculator = document.querySelector('.calculator')
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-    function detectMode() {
-        if(isDarkMode.matches) {
-            calculator.classList.add('dark')
-            //console.log('Mode: Dark')
-        } else {
-            calculator.classList.remove('dark')
-            //console.log('Mode: Light')
+    <script>
+        // isDarkMode
+        const calculator = document.querySelector('.calculator')
+        const btnMode = document.querySelector('.mode')
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        function detectMode() {
+            if (isDarkMode.matches) {
+                calculator.classList.add('dark')
+                //console.log('Mode: Dark')
+            } else {
+                calculator.classList.remove('dark')
+                //console.log('Mode: Light')
+            }
         }
-    }
-    detectMode()
-    isDarkMode.addListener(detectMode)
+        detectMode()
+        isDarkMode.addListener(detectMode)
+        btnMode.addEventListener('click', () => {
+            calculator.classList.toggle('dark')
+        })
 
-<script>
-    // isDarkMode
-    const calculator = document.querySelector('.calculator')
-    const btnMode    = document.querySelector('.mode')
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-    function detectMode() {
-        if(isDarkMode.matches) {
-            calculator.classList.add('dark')
-            //console.log('Mode: Dark')
-        } else {
-            calculator.classList.remove('dark')
-            //console.log('Mode: Light')
-        }
-    }
-    detectMode()
-    isDarkMode.addListener(detectMode)
-    btnMode.addEventListener('click', () => {
-        calculator.classList.toggle('dark')
-    })
-    
-    // Buttons Actions - - - - - - - - - - -
-    const btnsNumbers = document.querySelectorAll('button[data-num]')
-        const btnsOpers   = document.querySelectorAll('button[data-opr]')
-        const btnClear    = document.querySelector('.btn-clear')
-        const btnBack     = document.querySelector('.btn-back')
-        const btnEqual    = document.querySelector('.btn-equal')
-        const operation   = document.querySelector('.operation')
- 
+        // Buttons Actions - - - - - - - - - - -
+        const btnsNumbers = document.querySelectorAll('button[data-num]')
+        const btnsOpers = document.querySelectorAll('button[data-opr]')
+        const btnClear = document.querySelector('.btn-clear')
+        const btnBack = document.querySelector('.btn-back')
+        const btnEqual = document.querySelector('.btn-equal')
+        const operation = document.querySelector('.operation')
+
         function addToOperation(c) {
-            if(validateLength()) {
+            if (validateLength()) {
                 operation.value += c
             }
         }
- 
+
         function validateLength() {
-            if(operation.value.length < 28) {
+            if (operation.value.length < 28) {
                 return true
             } else {
                 return false
             }
         }
- 
+
         btnsNumbers.forEach((btn) => {
             btn.addEventListener('click', () => {
                 addToOperation(btn.dataset.num)
             })
         })
- 
+
         btnClear.addEventListener('click', () => {
             operation.value = ''
         })
-</script>
+    </script>
 </body>
+
 </html>

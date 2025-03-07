@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <title>Baloto</title>
+    <style>
+        body {
+            background: url("images/paredLadrillo.svg") no-repeat center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .contenedor {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .cubo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .central {
+            background-image: url("images/signoInterrogacion.png");
+            top: 80px;
+            left: 125px;
+        }
+
+        .cubo-1 {
+            top: 80px;
+            left: 50px;
+            background-image: url("images/signoPregunta.png");
+        }
+
+        .cubo-2 {
+            top: 80px;
+            left: 200px;
+            background-image: url("images/signoPregunta.png");
+        }
+
+        .cubo-3 {
+            top: 140px;
+            left: 85px;
+            background-image: url("images/signoPregunta.png");
+        }
+
+        .cubo-4 {
+            top: 140px;
+            left: 165px;
+            background-image: url("images/signoPregunta.png");
+        }
+
+        .cubo-5 {
+            top: 200px;
+            left: 125px;
+            background-image: url("images/signoPregunta.png");
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+        <div class="contenedor">
+            <div class="cubo central"></div>
+            <div class="cubo cubo-1"></div>
+            <div class="cubo cubo-2"></div>
+            <div class="cubo cubo-3"></div>
+            <div class="cubo cubo-4"></div>
+            <div class="cubo cubo-5"></div>
+        </div>
+        <button onclick="generarNumeros()">Generar</button>
+    </section>
+    <script>
+        function generarNumeros() {
+            let numeros = [];
+            while (numeros.length < 5) {
+                let num = Math.floor(Math.random() * 44) + 1;
+                if (!numeros.includes(num)) {
+                    numeros.push(num);
+                }
+            }
+            let numEspecial = Math.floor(Math.random() * 17) + 1;
+            let cubos = document.querySelectorAll(".cubo:not(.central)");
+            cubos.forEach((cubo, index) => {
+                cubo.textContent = numeros[index] || numEspecial;
+            });
+
+            // Número para el cubo central (entre 1 y 16)
+            let numCentral = Math.floor(Math.random() * 16) + 1;
+            document.querySelector(".central").textContent = numCentral;
+        }
+    </script>
+</body>
+
+</html>
