@@ -101,33 +101,45 @@
     <section class="section">
         <div class="contenedor">
             <div class="pared"></div>
-            <div class="cubo central"></div>
-            <div class="cubo cubo-1"></div>
-            <div class="cubo cubo-2"></div>
-            <div class="cubo cubo-3"></div>
-            <div class="cubo cubo-4"></div>
-            <div class="cubo cubo-5"></div>
+            <div class="cubo central elipse"></div>
+            <div class="cubo cubo-1 elipse"></div>
+            <div class="cubo cubo-2 elipse"></div>
+            <div class="cubo cubo-3 elipse"></div>
+            <div class="cubo cubo-4 elipse"></div>
+            <div class="cubo cubo-5 elipse"></div>
         </div>
     </section>
-        <button class="generar" onclick="generarNumeros()">Generar</button>
+    <button class="generar">Generar</button>
     <script>
-        function generarNumeros() {
-            let numeros = [];
-            while (numeros.length < 5) {
-                let num = Math.floor(Math.random() * 44) + 1;
-                if (!numeros.includes(num)) {
-                    numeros.push(num);
-                }
-            }
-            let numEspecial = Math.floor(Math.random() * 17) + 1;
-            let cubos = document.querySelectorAll(".cubo:not(.central)");
-            cubos.forEach((cubo, index) => {
-                cubo.textContent = numeros[index] || numEspecial;
-            });
+        //variables
+        var numeros = []
 
-            let numCentral = Math.floor(Math.random() * 16) + 1;
-            document.querySelector(".central").textContent = numCentral;
+        //constantes
+        const elipses = document.querySelectorAll(".elipse")
+        const btn = document.querySelector(".generar")
+
+        function generarNumeros() {
+            for (let i = 0; i < 6; i++) {
+                do {
+                    if (i == 0) {
+                        numero = Math.floor(Math.random() * 16) + 1;
+                    } else {
+                        numero = Math.floor(Math.random() * 44) + 1;
+                    }
+                } while (numeros.includes(numero));
+                numeros.push(numero);
+            }
         }
+
+        btn.addEventListener("click", function () {
+            generarNumeros()
+            var contador = 0
+            elipses.forEach(elipse => {
+                elipse.textContent = numeros[contador]
+                contador++
+            })
+            numeros = []
+        })
     </script>
 </body>
 

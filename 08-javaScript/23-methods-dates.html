@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/master.css">
-    <title>templade</title>
+    <title>Methods dates</title>
     <style>
         .section{
             background-color: #0009;
@@ -19,17 +19,34 @@
     </nav>
     <main>
         <header>
-            <h1>templade</h1>
+            <h1>Methods dates</h1>
             <h2>
-                            
+
             </h2>
         </header>
         <section class="section">
-            
+            <h3>methods set:</h3>
+            <ul class="methods-set"></ul>
+            <h3>methods get:</h3>
+            <ul class="methods-get"></ul>
         </section>
     </main>
     <script>
+        //Elementos
+        const methodsSet = document.querySelector('.methods-set')
+        const methodsGet = document.querySelector('.methods-get')
 
+        //Methods Set
+        let worldcup2026 = new Date('10/30/2028 08:00:00')
+        console.log(worldcup2026)
+        worldcup2026.setMonth(5)
+        worldcup2026.setDate(11)
+        worldcup2026.setFullYear(2026)
+        console.log(worldcup2026)
+        methodsSet.innerHTML = `Date Next Fifa WorldCup: 
+                                ${worldcup2026.getDate()}/
+                                ${worldcup2026.getMonth()+1}/
+                                ${worldcup2026.getFullYear()}`
     </script>
 </body>
 </html>
