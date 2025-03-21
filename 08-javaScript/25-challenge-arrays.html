@@ -52,6 +52,14 @@
             background: #E76B08;
         }
 
+        .switch-button {
+            background: #444;
+        }
+
+        .switch-button.active {
+            background: #FD7E14;
+        }
+
         #teamsList {
             display: flex;
             flex-wrap: wrap;
@@ -288,6 +296,42 @@
             display: inline-block;
             vertical-align: middle;
         }
+
+        .team-controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .team-selection {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #333;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .team-selection select {
+            flex-grow: 1;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background: #444;
+            color: white;
+            font-family: "Bebas Neue", sans-serif;
+        }
+
+        .team-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 
@@ -303,8 +347,28 @@
         <div id="playoffsSetup" class="playoffs-setup">
             <h3 id="selectTeamsHeader">Selecciona equipos para los playoffs (mínimo 4)</h3>
             <div id="playoffTeams" class="selected-teams"></div>
+
+            <!-- Nueva sección de controles de equipo -->
+            <div class="team-controls">
+                <div class="team-selection">
+                    <select id="teamSelector">
+                        <!-- Options will be filled by JavaScript -->
+                    </select>
+                </div>
+
+                <div class="team-buttons">
+                    <button id="addToStartBtn" class="switch-button" onclick="toggleAddToStart()">Agregar al
+                        Inicio</button>
+                    <button id="addToEndBtn" class="switch-button active" onclick="toggleAddToEnd()">Agregar al
+                        Final</button>
+                    <button id="addTeamBtn" onclick="addSelectedTeam()">Agregar Equipo</button>
+                    <button id="removeTeamBtn" onclick="removeSelectedTeam()">Eliminar Equipo</button>
+                </div>
+            </div>
+
             <button id="startPlayoffsButton" onclick="startPlayoffs()" style="margin-top: 15px;">Iniciar
                 Playoffs</button>
+
             <table id="selectedTeamsTable" class="selected-teams-table">
                 <thead>
                     <tr>
@@ -330,6 +394,7 @@
         </div>
     </section>
 
+
     <script>
         const teams = [
             { name: "Boston Celtics", logo: "https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" },
@@ -349,6 +414,8 @@
         ];
 
         let playoffTeams = [];
+        let addToStart = false;
+        let addToEnd = true;
 
         function renderList() {
             const list = document.getElementById("teamsList");
@@ -361,15 +428,6 @@
                 `;
                 list.appendChild(li);
             });
-        }
-
-        function removeTeam(index) {
-            if (teams.length <= 4) {
-                alert("No se puede eliminar más equipos. Se necesita un mínimo de 4 equipos.");
-                return;
-            }
-            teams.splice(index, 1);
-            renderList();
         }
 
         function setupPlayoffs() {
@@ -390,34 +448,98 @@
             document.getElementById("removePositionDiv").style.display = "flex";
             document.getElementById("gameResults").style.display = "none";
 
+            // Llenar el selector de equipos
+            fillTeamSelector();
             renderPlayoffSelection();
+        }
+
+        function fillTeamSelector() {
+            const selector = document.getElementById("teamSelector");
+            selector.innerHTML = "";
+
+            teams.forEach((team, index) => {
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = team.name;
+                selector.appendChild(option);
+            });
         }
 
         function renderPlayoffSelection() {
             const playoffTeamsDiv = document.getElementById("playoffTeams");
             playoffTeamsDiv.innerHTML = "";
 
+            // Ya no necesitamos mostrar chips con eventos clic, solo mostraremos los equipos seleccionados
             teams.forEach((team, index) => {
-                const isSelected = playoffTeams.includes(index);
-                const chip = document.createElement("div");
-                chip.className = "team-chip";
-                chip.style.backgroundColor = isSelected ? "#FD7E14" : "#444";
-                chip.innerHTML = `
-                    <img src="${team.logo}" alt="${team.name}">
-                `;
-                chip.onclick = () => togglePlayoffTeam(index);
-                playoffTeamsDiv.appendChild(chip);
+                if (playoffTeams.includes(index)) {
+                    const chip = document.createElement("div");
+                    chip.className = "team-chip";
+                    chip.style.backgroundColor = "#FD7E14";
+                    chip.innerHTML = `
+                        <img src="${team.logo}" alt="${team.name}">
+                    `;
+                    playoffTeamsDiv.appendChild(chip);
+                }
             });
 
             renderSelectedTeamsTable();
         }
 
-        function togglePlayoffTeam(index) {
-            if (playoffTeams.includes(index)) {
-                playoffTeams = playoffTeams.filter(i => i !== index);
-            } else {
-                playoffTeams.push(index);
+        function toggleAddToStart() {
+            addToStart = !addToStart;
+            document.getElementById("addToStartBtn").classList.toggle("active", addToStart);
+
+            // Si activamos "Agregar al Inicio", desactivamos "Agregar al Final"
+            if (addToStart) {
+                addToEnd = false;
+                document.getElementById("addToEndBtn").classList.remove("active");
             }
+        }
+
+        function toggleAddToEnd() {
+            addToEnd = !addToEnd;
+            document.getElementById("addToEndBtn").classList.toggle("active", addToEnd);
+
+            // Si activamos "Agregar al Final", desactivamos "Agregar al Inicio"
+            if (addToEnd) {
+                addToStart = false;
+                document.getElementById("addToStartBtn").classList.remove("active");
+            }
+        }
+
+        function addSelectedTeam() {
+            const selector = document.getElementById("teamSelector");
+            const teamIndex = parseInt(selector.value);
+
+            // Verificar si el equipo ya está en la lista
+            if (playoffTeams.includes(teamIndex)) {
+                alert("Este equipo ya está seleccionado para los playoffs.");
+                return;
+            }
+
+            // Agregar al inicio o al final según la configuración
+            if (addToStart) {
+                playoffTeams.unshift(teamIndex);
+            } else {
+                playoffTeams.push(teamIndex);
+            }
+
+            renderPlayoffSelection();
+        }
+
+        function removeSelectedTeam() {
+            const selector = document.getElementById("teamSelector");
+            const teamIndex = parseInt(selector.value);
+
+            // Verificar si el equipo está en la lista
+            const position = playoffTeams.indexOf(teamIndex);
+            if (position === -1) {
+                alert("Este equipo no está seleccionado para los playoffs.");
+                return;
+            }
+
+            // Eliminar el equipo
+            playoffTeams.splice(position, 1);
             renderPlayoffSelection();
         }
 
@@ -615,6 +737,7 @@
             document.getElementById("startPlayoffsButton").style.display = "none";
             document.getElementById("selectedTeamsTable").style.display = "none";
             document.getElementById("removePositionDiv").style.display = "none";
+            document.querySelector(".team-controls").style.display = "none";
 
             // Mostrar los resultados
             const gameResults = document.getElementById("gameResults");
@@ -633,6 +756,7 @@
             document.getElementById("startPlayoffsButton").style.display = "inline-block";
             document.getElementById("selectedTeamsTable").style.display = "table";
             document.getElementById("removePositionDiv").style.display = "flex";
+            document.querySelector(".team-controls").style.display = "flex";
 
             // Reiniciar los equipos seleccionados
             playoffTeams = [];
