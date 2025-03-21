@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Equipos de la NBA - Playoffs</title>
+    <style>
+        body {
+            font-family: "Bebas Neue", sans-serif;
+            text-align: center;
+            color: white;
+            background-color: #1a1a1a;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+            display: flex;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            color: #FD7E14;
+            padding: 0 0 0 0;
+            gap: 0 !important;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-family: "Bebas Neue", sans-serif;
+            padding: 10px 15px;
+            background: #FD7E14;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #E76B08;
+        }
+
+        #teamsList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #teamsList li {
+            background: #0009;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        section.section {
+            background: url(images/NBA/playOffs.jpg) no-repeat center;
+            background-size: cover;
+            width: 90%;
+            max-width: 800px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .game-results {
+            margin-top: 40px;
+            padding: 15px;
+            background: #2c2c2c;
+            border-radius: 8px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .game-results h3 {
+            color: #FD7E14;
+            margin-top: 0;
+        }
+
+        .playoffs-setup {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #2c2c2c;
+            border-radius: 8px;
+        }
+
+        .selected-teams {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .team-chip {
+            background: #444;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            margin: 3px;
+            cursor: pointer;
+        }
+
+        .team-chip img {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            object-fit: contain;
+        }
+
+        .selected-teams-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .selected-teams-table th,
+        .selected-teams-table td {
+            padding: 10px;
+            border: 1px solid #444;
+            text-align: left;
+        }
+
+        .selected-teams-table th {
+            background-color: #FD7E14;
+            color: white;
+        }
+
+        .selected-teams-table td {
+            background-color: #333;
+        }
+
+        .selected-teams-table img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            margin-right: 10px;
+        }
+
+        .remove-by-position {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .remove-by-position input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100px;
+        }
+
+        .remove-by-position button {
+            padding: 10px 15px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .remove-by-position button:hover {
+            background: #c82333;
+        }
+
+        /* Estilos para los resultados de los playoffs */
+        .results-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .matchup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            background-color: #333;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .matchup-team {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+            padding: 10px;
+        }
+
+        .matchup-team img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 20%;
+            text-align: center;
+        }
+
+        .winner {
+            background-color: rgba(253, 126, 20, 0.2);
+            border-radius: 8px;
+        }
+
+        .playoff-round {
+            margin-top: 20px;
+        }
+
+        .champion-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .champion-container h3 {
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        .champion-container img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .champion-container h2 {
+            color: gold;
+        }
+
+        img {
+            width: 90px;
+        }
+
+        h1 img {
+            width: 90px;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+        <h1>Equipos de la<img src="images/NBA/NBA-Logo.png" alt=""></h1>
+        <div class="controls">
+            <button onclick="setupPlayoffs()">Configurar Playoffs</button>
+        </div>
+
+        <ul id="teamsList"></ul>
+
+        <div id="playoffsSetup" class="playoffs-setup">
+            <h3 id="selectTeamsHeader">Selecciona equipos para los playoffs (mínimo 4)</h3>
+            <div id="playoffTeams" class="selected-teams"></div>
+            <button id="startPlayoffsButton" onclick="startPlayoffs()" style="margin-top: 15px;">Iniciar
+                Playoffs</button>
+            <table id="selectedTeamsTable" class="selected-teams-table">
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Logo</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="selectedTeamsTableBody"></tbody>
+            </table>
+
+            <!-- Campo para eliminar por posición -->
+            <div id="removePositionDiv" class="remove-by-position">
+                <input type="number" id="removePositionInput" placeholder="Posición" min="1">
+                <button onclick="removeTeamByPosition()">Eliminar</button>
+            </div>
+
+            <!-- Resultados de los playoffs (ahora dentro del div playoffsSetup) -->
+            <div id="gameResults" class="game-results" style="display: none;">
+                <h3>Resultados de los Playoffs</h3>
+                <div id="results" class="results-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const teams = [
+            { name: "Boston Celtics", logo: "https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" },
+            { name: "Golden State Warriors", logo: "https://upload.wikimedia.org/wikipedia/en/0/01/Golden_State_Warriors_logo.svg" },
+            { name: "Dallas Mavericks", logo: "https://upload.wikimedia.org/wikipedia/en/9/97/Dallas_Mavericks_logo.svg" },
+            { name: "Phoenix Suns", logo: "https://upload.wikimedia.org/wikipedia/en/d/dc/Phoenix_Suns_logo.svg" },
+            { name: "Chicago Bulls", logo: "https://upload.wikimedia.org/wikipedia/en/6/67/Chicago_Bulls_logo.svg" },
+            { name: "San Antonio Spurs", logo: "https://upload.wikimedia.org/wikipedia/en/a/a2/San_Antonio_Spurs.svg" },
+            { name: "Los Angeles Lakers", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Los_Angeles_Lakers_logo.svg" },
+            { name: "Charlotte Hornets", logo: "https://upload.wikimedia.org/wikipedia/en/c/c4/Charlotte_Hornets_%282014%29.svg" },
+            { name: "Indiana Pacers", logo: "https://upload.wikimedia.org/wikipedia/en/1/1b/Indiana_Pacers.svg" },
+            { name: "Detroit Pistons", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Logo_of_the_Detroit_Pistons.svg/300px-Logo_of_the_Detroit_Pistons.svg.png" },
+            { name: "Oklahoma City Thunder", logo: "https://upload.wikimedia.org/wikipedia/en/5/5d/Oklahoma_City_Thunder.svg" },
+            { name: "Philadelphia 76ers", logo: "https://upload.wikimedia.org/wikipedia/en/0/0e/Philadelphia_76ers_logo.svg" },
+            { name: "Milwaukee Bucks", logo: "https://upload.wikimedia.org/wikipedia/en/4/4a/Milwaukee_Bucks_logo.svg" },
+            { name: "Memphis Grizzlies", logo: "https://upload.wikimedia.org/wikipedia/en/f/f1/Memphis_Grizzlies.svg" }
+        ];
+
+        let playoffTeams = [];
+
+        function renderList() {
+            const list = document.getElementById("teamsList");
+            list.innerHTML = "";
+            teams.forEach((team, index) => {
+                const li = document.createElement("li");
+                li.title = team.name;
+                li.innerHTML = `
+                    <img src="${team.logo}" alt="${team.name}" class="team-logo">
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function removeTeam(index) {
+            if (teams.length <= 4) {
+                alert("No se puede eliminar más equipos. Se necesita un mínimo de 4 equipos.");
+                return;
+            }
+            teams.splice(index, 1);
+            renderList();
+        }
+
+        function setupPlayoffs() {
+            if (teams.length < 4) {
+                alert("Necesitas al menos 4 equipos para configurar los playoffs.");
+                return;
+            }
+
+            playoffTeams = [];
+            const playoffsSetup = document.getElementById("playoffsSetup");
+            playoffsSetup.style.display = "block";
+
+            // Mostrar los controles de selección y ocultar resultados
+            document.getElementById("selectTeamsHeader").style.display = "block";
+            document.getElementById("playoffTeams").style.display = "flex";
+            document.getElementById("startPlayoffsButton").style.display = "inline-block";
+            document.getElementById("selectedTeamsTable").style.display = "table";
+            document.getElementById("removePositionDiv").style.display = "flex";
+            document.getElementById("gameResults").style.display = "none";
+
+            renderPlayoffSelection();
+        }
+
+        function renderPlayoffSelection() {
+            const playoffTeamsDiv = document.getElementById("playoffTeams");
+            playoffTeamsDiv.innerHTML = "";
+
+            teams.forEach((team, index) => {
+                const isSelected = playoffTeams.includes(index);
+                const chip = document.createElement("div");
+                chip.className = "team-chip";
+                chip.style.backgroundColor = isSelected ? "#FD7E14" : "#444";
+                chip.innerHTML = `
+                    <img src="${team.logo}" alt="${team.name}">
+                `;
+                chip.onclick = () => togglePlayoffTeam(index);
+                playoffTeamsDiv.appendChild(chip);
+            });
+
+            renderSelectedTeamsTable();
+        }
+
+        function togglePlayoffTeam(index) {
+            if (playoffTeams.includes(index)) {
+                playoffTeams = playoffTeams.filter(i => i !== index);
+            } else {
+                playoffTeams.push(index);
+            }
+            renderPlayoffSelection();
+        }
+
+        function renderSelectedTeamsTable() {
+            const tableBody = document.getElementById("selectedTeamsTableBody");
+            tableBody.innerHTML = "";
+
+            playoffTeams.forEach((teamIndex, position) => {
+                const team = teams[teamIndex];
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${position + 1}</td>
+                    <td><img src="${team.logo}" alt="${team.name}"></td>
+                    <td>${team.name}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function removeTeamByPosition() {
+            const positionInput = document.getElementById("removePositionInput");
+            const position = parseInt(positionInput.value) - 1; // Convertir a índice base 0
+
+            if (isNaN(position) || position < 0 || position >= playoffTeams.length) {
+                alert("Por favor, ingresa una posición válida.");
+                return;
+            }
+
+            // Eliminar el equipo en la posición indicada
+            playoffTeams.splice(position, 1);
+            renderPlayoffSelection();
+            positionInput.value = ""; // Limpiar el campo de entrada
+        }
+
+        function startPlayoffs() {
+            if (playoffTeams.length < 4) {
+                alert("Selecciona al menos 4 equipos para los playoffs.");
+                return;
+            }
+
+            let results = "";
+
+            // Inicializar propiedades de equipos si no existen
+            teams.forEach(team => {
+                team.wins = team.wins || 0;
+                team.losses = team.losses || 0;
+                team.points = team.points || 0;
+            });
+
+            // Primera ronda
+            results += `<div class="playoff-round"><h4>Primera Ronda</h4>`;
+            const firstRoundWinners = [];
+
+            for (let i = 0; i < playoffTeams.length; i += 2) {
+                if (i + 1 < playoffTeams.length) {
+                    const team1Index = playoffTeams[i];
+                    const team2Index = playoffTeams[i + 1];
+
+                    const score1 = getRandomScore();
+                    const score2 = getRandomScore();
+
+                    results += `
+                    <div class="matchup">
+                        <div class="matchup-team ${score1 > score2 ? 'winner' : ''}">
+                            <img src="${teams[team1Index].logo}" alt="${teams[team1Index].name}" title="${teams[team1Index].name}">
+                            <span>${teams[team1Index].name}</span>
+                        </div>
+                        <div class="score">${score1} - ${score2}</div>
+                        <div class="matchup-team ${score2 > score1 ? 'winner' : ''}">
+                            <img src="${teams[team2Index].logo}" alt="${teams[team2Index].name}" title="${teams[team2Index].name}">
+                            <span>${teams[team2Index].name}</span>
+                        </div>
+                    </div>`;
+
+                    if (score1 > score2) {
+                        firstRoundWinners.push(team1Index);
+                        teams[team1Index].wins = (teams[team1Index].wins || 0) + 1;
+                        teams[team2Index].losses = (teams[team2Index].losses || 0) + 1;
+                    } else {
+                        firstRoundWinners.push(team2Index);
+                        teams[team2Index].wins = (teams[team2Index].wins || 0) + 1;
+                        teams[team1Index].losses = (teams[team1Index].losses || 0) + 1;
+                    }
+
+                    teams[team1Index].points = (teams[team1Index].points || 0) + score1;
+                    teams[team2Index].points = (teams[team2Index].points || 0) + score2;
+                }
+            }
+            results += `</div>`;
+
+            // Final si hay suficientes equipos
+            if (firstRoundWinners.length >= 2) {
+                let semiFinalWinners = [];
+
+                // Semifinales
+                if (firstRoundWinners.length >= 4) {
+                    results += `<div class="playoff-round"><h4>Semifinales</h4>`;
+
+                    for (let i = 0; i < firstRoundWinners.length; i += 2) {
+                        if (i + 1 < firstRoundWinners.length) {
+                            const team1Index = firstRoundWinners[i];
+                            const team2Index = firstRoundWinners[i + 1];
+
+                            const score1 = getRandomScore();
+                            const score2 = getRandomScore();
+
+                            results += `
+                            <div class="matchup">
+                                <div class="matchup-team ${score1 > score2 ? 'winner' : ''}">
+                                    <img src="${teams[team1Index].logo}" alt="${teams[team1Index].name}" title="${teams[team1Index].name}">
+                                    <span>${teams[team1Index].name}</span>
+                                </div>
+                                <div class="score">${score1} - ${score2}</div>
+                                <div class="matchup-team ${score2 > score1 ? 'winner' : ''}">
+                                    <img src="${teams[team2Index].logo}" alt="${teams[team2Index].name}" title="${teams[team2Index].name}">
+                                    <span>${teams[team2Index].name}</span>
+                                </div>
+                            </div>`;
+
+                            if (score1 > score2) {
+                                semiFinalWinners.push(team1Index);
+                                teams[team1Index].wins = (teams[team1Index].wins || 0) + 1;
+                                teams[team2Index].losses = (teams[team2Index].losses || 0) + 1;
+                            } else {
+                                semiFinalWinners.push(team2Index);
+                                teams[team2Index].wins = (teams[team2Index].wins || 0) + 1;
+                                teams[team1Index].losses = (teams[team1Index].losses || 0) + 1;
+                            }
+
+                            teams[team1Index].points = (teams[team1Index].points || 0) + score1;
+                            teams[team2Index].points = (teams[team2Index].points || 0) + score2;
+                        }
+                    }
+                    results += `</div>`;
+                } else {
+                    semiFinalWinners = firstRoundWinners;
+                }
+
+                // Final
+                if (semiFinalWinners.length >= 2) {
+                    results += `<div class="playoff-round"><h4>Final</h4>`;
+
+                    const team1Index = semiFinalWinners[0];
+                    const team2Index = semiFinalWinners[1];
+
+                    const score1 = getRandomScore();
+                    const score2 = getRandomScore();
+
+                    const winnerIndex = score1 > score2 ? team1Index : team2Index;
+
+                    results += `
+                    <div class="matchup">
+                        <div class="matchup-team ${score1 > score2 ? 'winner' : ''}">
+                            <img src="${teams[team1Index].logo}" alt="${teams[team1Index].name}" title="${teams[team1Index].name}">
+                            <span>${teams[team1Index].name}</span>
+                        </div>
+                        <div class="score">${score1} - ${score2}</div>
+                        <div class="matchup-team ${score2 > score1 ? 'winner' : ''}">
+                            <img src="${teams[team2Index].logo}" alt="${teams[team2Index].name}" title="${teams[team2Index].name}">
+                            <span>${teams[team2Index].name}</span>
+                        </div>
+                    </div>`;
+
+                    if (score1 > score2) {
+                        teams[team1Index].wins = (teams[team1Index].wins || 0) + 1;
+                        teams[team2Index].losses = (teams[team2Index].losses || 0) + 1;
+                    } else {
+                        teams[team2Index].wins = (teams[team2Index].wins || 0) + 1;
+                        teams[team1Index].losses = (teams[team1Index].losses || 0) + 1;
+                    }
+
+                    teams[team1Index].points = (teams[team1Index].points || 0) + score1;
+                    teams[team2Index].points = (teams[team2Index].points || 0) + score2;
+
+                    results += `</div>`;
+
+                    // Mostrar campeón
+                    results += `
+                    <div class="champion-container">
+                        <h3>¡CAMPEÓN DE LA NBA!</h3>
+                        <img src="${teams[winnerIndex].logo}" alt="${teams[winnerIndex].name}">
+                        <h2>${teams[winnerIndex].name}</h2>
+                    </div>`;
+                }
+            }
+
+            // Agregar botón para crear nuevo partido
+            results += `
+            <button onclick="resetPlayoffs()" style="margin-top: 20px;">Crear Nuevo Partido</button>
+            `;
+
+            // Ocultar los controles de selección
+            document.getElementById("selectTeamsHeader").style.display = "none";
+            document.getElementById("playoffTeams").style.display = "none";
+            document.getElementById("startPlayoffsButton").style.display = "none";
+            document.getElementById("selectedTeamsTable").style.display = "none";
+            document.getElementById("removePositionDiv").style.display = "none";
+
+            // Mostrar los resultados
+            const gameResults = document.getElementById("gameResults");
+            const resultsDiv = document.getElementById("results");
+            gameResults.style.display = "block";
+            resultsDiv.innerHTML = results;
+        }
+
+        function resetPlayoffs() {
+            // Ocultar los resultados
+            document.getElementById("gameResults").style.display = "none";
+
+            // Mostrar los controles de selección
+            document.getElementById("selectTeamsHeader").style.display = "block";
+            document.getElementById("playoffTeams").style.display = "flex";
+            document.getElementById("startPlayoffsButton").style.display = "inline-block";
+            document.getElementById("selectedTeamsTable").style.display = "table";
+            document.getElementById("removePositionDiv").style.display = "flex";
+
+            // Reiniciar los equipos seleccionados
+            playoffTeams = [];
+            renderPlayoffSelection();
+        }
+
+        function getRandomScore() {
+            // Generar puntaje aleatorio entre 80 y 120
+            return Math.floor(Math.random() * 41) + 80;
+        }
+
+        // Inicialización
+        window.onload = renderList;
+    </script>
+</body>
+
+</html>
