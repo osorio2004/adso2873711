@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        /* Estilos para el contenedor del reproductor */
+        div.player {
+            background: linear-gradient(to bottom, #0006, #000);
+            border-radius: 10px;
+            height: 340px;
+            margin: 2rem auto;
+            width: 340px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Estilos para el título, artista y año de la canción */
+        h4.title {
+            color: yellow;
+            position: absolute;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            width: 320px;
+            text-align: center;
+            opacity: 0.9;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h4.artist,
+        h4.year {
+            color: #fff;
+            position: absolute;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            width: 320px;
+            text-align: center;
+            opacity: 0.9;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h4.year {
+            top: 90px;
+        }
+
+        /* Controles de reproducción (prev, play/pause, next) */
+        div.controls {
+            position: absolute;
+            width: 320px;
+            bottom: 20px;
+            height: 50px;
+            left: 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateX(-50%);
+        }
+
+        /* Botones de control */
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            filter: brightness(0) invert(1);
+        }
+
+        button.play {
+            background: url('images/mp3/play.svg') no-repeat center;
+            background-size: contain;
+            width: 40px;
+            height: 40px;
+        }
+
+        button.pause {
+            background: url('images/mp3/pause.svg') no-repeat center;
+        }
+
+        button.prev {
+            background: url('images/mp3/prev.svg') no-repeat center;
+            width: 30px;
+            height: 30px;
+        }
+
+        button.next {
+            background: url('images/mp3/next.svg') no-repeat center;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>31 - Json Data</h1>
+            <H2>
+                Formato de texto para información
+            </H2>
+        </header>
+        <div class="player">
+            <h4 class="title"></h4>
+            <h4 class="artist"></h4>
+            <h4 class="year"></h4>
+        </div>
+        <div class="controls">
+            <button class="prev"></button>
+            <button class="play"></button>
+            <button class="next"></button>
+        </div>
+        <audio src=""></audio>
+    </main>
+
+    <script>
+        // Referencias a los elementos del DOM
+        const player = document.querySelector('.player');
+        const title = document.querySelector('.title');
+        const artist = document.querySelector('.artist');
+        const year = document.querySelector('.year');
+        const btnPrev = document.querySelector('.prev');
+        const btnPlay = document.querySelector('.play');
+        const btnNext = document.querySelector('.next');
+        const audio = document.querySelector('audio');
+
+        // Variables de control
+        let songs = [];
+        let currentSong = 0;
+        let isPlaying = false;
+
+        // Función para cargar la canción seleccionada
+        function loadSongs(index) {
+            const song = songs[index];
+            player.style.background = `url(${song.cover}) no-repeat center`;
+            title.textContent = song.title;
+            artist.textContent = `${song.artist} - ${song.album}`;
+            year.textContent = song.year;
+            audio.src = song.song;
+            // audio.play()
+        }
+
+        // Control de reproducción y pausa
+        btnPlay.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                btnPlay.classList.remove('pause');
+                btnPlay.classList.add('play');
+            } else {
+                audio.play();
+                btnPlay.classList.remove('play');
+                btnPlay.classList.add('pause');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        //Events
+        btnPlay.addEventListener('click', (e) =>{
+            if (isPlaying) {
+                audio.pause()
+            } else {
+                audio.play()
+            }
+            isPlaying = !isPlaying
+        })
+
+        // Botón para canción anterior
+        btnPrev.addEventListener('click', () => {
+            currentSong = (currentSong > 0) ? currentSong - 1 : songs.length - 1;
+            loadSongs(currentSong);
+            audio.play();
+        });
+
+        // Botón para siguiente canción
+        btnNext.addEventListener('click', () => {
+            currentSong = (currentSong < songs.length - 1) ? currentSong + 1 : 0;
+            loadSongs(currentSong);
+            audio.play();
+        });
+
+        // Cargar canciones desde el JSON
+        fetch('json/playlist.json')
+            .then(response => response.json())
+            .then(data => {
+                songs = data.songs;
+                loadSongs(currentSong);
+            })
+            .catch(error => console.error('Error: ', error));
+    </script>
+</body>
+
+</html>

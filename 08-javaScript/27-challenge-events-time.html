@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Plataformas</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333;
+            font-family: Arial, sans-serif;
+        }
+        
+        #game-container {
+            position: relative;
+        }
+        
+        #score-display {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-size: 14px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="score-display">Monedas: 0</div>
+        <div id="instructions">Controles: Flechas ← → para moverse, ↑ para saltar</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+    <script>
+        // Configuración del juego
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'game-container',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 800 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        // Variables globales
+        let player;
+        let platforms;
+        let coins;
+        let enemies;
+        let cursors;
+        let score = 0;
+        let scoreText;
+        let gameOver = false;
+        
+        // Crear juego
+        const game = new Phaser.Game(config);
+
+        // Precargar recursos
+        function preload() {
+            // Cargamos assets usando placeholders para ilustración
+            this.load.image('sky', '/api/placeholder/800/600');
+            
+            // Creamos un atlas sprite simple para el jugador
+            this.load.spritesheet('player', '/api/placeholder/192/96', {
+                frameWidth: 32,
+                frameHeight: 48
+            });
+            
+            // Plataformas y tiles
+            this.load.image('ground', '/api/placeholder/400/32');
+            this.load.image('platform', '/api/placeholder/200/32');
+            
+            // Coleccionables y enemigos
+            this.load.image('coin', '/api/placeholder/32/32');
+            this.load.image('enemy', '/api/placeholder/32/32');
+        }
+
+        // Crear elementos del juego
+        function create() {
+            // Fondo
+            this.add.image(400, 300, 'sky').setTint(0x87CEEB);
+            
+            // Grupo de plataformas estáticas
+            platforms = this.physics.add.staticGroup();
+            
+            // Crear el suelo
+            platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+            
+            // Crear algunas plataformas
+            platforms.create(600, 400, 'platform');
+            platforms.create(50, 250, 'platform');
+            platforms.create(750, 220, 'platform');
+            platforms.create(400, 320, 'platform');
+            
+            // Colorear las plataformas de marrón
+            platforms.getChildren().forEach(platform => {
+                platform.setTint(0x964B00);
+            });
+            
+            // Jugador y sus propiedades
+            player = this.physics.add.sprite(100, 450, 'player');
+            player.setBounce(0.1);
+            player.setCollideWorldBounds(true);
+            
+            // Colorear al jugador (un sprite simple)
+            player.setTint(0xFF6347);
+            
+            // Animaciones del jugador
+            this.anims.create({
+                key: 'left',
+                frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
+                frameRate: 10,
+                repeat: -1
+            });
+
+            this.anims.create({
+                key: 'turn',
+                frames: [ { key: 'player', frame: 4 } ],
+                frameRate: 20
+            });
+
+            this.anims.create({
+                key: 'right',
+                frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
+                frameRate: 10,
+                repeat: -1
+            });
+            
+            // Monedas
+            coins = this.physics.add.group({
+                key: 'coin',
+                repeat: 11,
+                setXY: { x: 12, y: 0, stepX: 70 }
+            });
+            
+            coins.children.iterate(function (child) {
+                child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+                child.setTint(0xFFD700); // Color dorado
+            });
+            
+            // Enemigos
+            enemies = this.physics.add.group();
+            createEnemy(this, 200, 500);
+            createEnemy(this, 500, 500);
+            createEnemy(this, 300, 250);
+            
+            // Controles
+            cursors = this.input.keyboard.createCursorKeys();
+            
+            // Colisiones
+            this.physics.add.collider(player, platforms);
+            this.physics.add.collider(coins, platforms);
+            this.physics.add.collider(enemies, platforms);
+            
+            // Recolección de monedas
+            this.physics.add.overlap(player, coins, collectCoin, null, this);
+            
+            // Colisión con enemigos
+            this.physics.add.collider(player, enemies, hitEnemy, null, this);
+            
+            // Texto de puntuación
+            scoreText = document.getElementById('score-display');
+        }
+
+        // Actualizar por cada frame
+        function update() {
+            if (gameOver) {
+                return;
+            }
+            
+            // Controles de movimiento
+            if (cursors.left.isDown) {
+                player.setVelocityX(-160);
+                player.anims.play('left', true);
+            } else if (cursors.right.isDown) {
+                player.setVelocityX(160);
+                player.anims.play('right', true);
+            } else {
+                player.setVelocityX(0);
+                player.anims.play('turn');
+            }
+            
+            // Salto (solo cuando está en el suelo)
+            if (cursors.up.isDown && player.body.touching.down) {
+                player.setVelocityY(-500);
+            }
+            
+            // Mover enemigos
+            moveEnemies();
+        }
+        
+        // Función para recolectar monedas
+        function collectCoin(player, coin) {
+            coin.disableBody(true, true);
+            
+            // Actualizar puntuación
+            score += 10;
+            scoreText.textContent = 'Monedas: ' + (score / 10);
+            
+            // Verificar si todas las monedas fueron recolectadas
+            if (coins.countActive(true) === 0) {
+                // Reiniciar las monedas
+                coins.children.iterate(function (child) {
+                    child.enableBody(true, child.x, 0, true, true);
+                });
+                
+                // Mostrar mensaje de nivel completado
+                const levelCompleteText = this.add.text(400, 300, '¡Nivel Completado!', { 
+                    fontSize: '32px', 
+                    fill: '#fff',
+                    stroke: '#000',
+                    strokeThickness: 4
+                }).setOrigin(0.5);
+                
+                // Desvanecer el mensaje después de 2 segundos
+                this.time.delayedCall(2000, () => {
+                    levelCompleteText.destroy();
+                });
+            }
+        }
+        
+        // Función para gestionar la colisión con enemigos
+        function hitEnemy(player, enemy) {
+            // Si el jugador está cayendo sobre el enemigo
+            if (player.body.velocity.y > 0 && player.y < enemy.y - 20) {
+                // Eliminar enemigo
+                enemy.disableBody(true, true);
+                
+                // Dar un pequeño rebote
+                player.setVelocityY(-250);
+                
+                // Añadir puntos
+                score += 20;
+                scoreText.textContent = 'Monedas: ' + (score / 10);
+            } else {
+                // Game over
+                this.physics.pause();
+                
+                player.setTint(0xff0000);
+                player.anims.play('turn');
+                
+                gameOver = true;
+                
+                // Mostrar mensaje de game over
+                const gameOverText = this.add.text(400, 300, 'Game Over', { 
+                    fontSize: '64px', 
+                    fill: '#fff',
+                    stroke: '#000',
+                    strokeThickness: 6
+                }).setOrigin(0.5);
+                
+                // Botón para reiniciar
+                const restartButton = this.add.text(400, 400, 'Reiniciar', { 
+                    fontSize: '32px', 
+                    fill: '#fff',
+                    backgroundColor: '#000',
+                    padding: { x: 20, y: 10 }
+                }).setOrigin(0.5).setInteractive();
+                
+                restartButton.on('pointerdown', () => {
+                    gameOver = false;
+                    score = 0;
+                    this.scene.restart();
+                });
+            }
+        }
+        
+        // Función para crear enemigos
+        function createEnemy(scene, x, y) {
+            const enemy = enemies.create(x, y, 'enemy');
+            enemy.setBounce(0.2);
+            enemy.setCollideWorldBounds(true);
+            enemy.setVelocityX(Phaser.Math.Between(-50, 50));
+            enemy.setTint(0x009900); // Color verde
+            
+            // Establecer dirección inicial
+            enemy.direction = enemy.body.velocity.x > 0 ? 1 : -1;
+            
+            return enemy;
+        }
+        
+        // Función para mover enemigos
+        function moveEnemies() {
+            enemies.children.iterate(function (enemy) {
+                // Cambiar dirección cuando toca los bordes
+                if (enemy.body.blocked.right) {
+                    enemy.direction = -1;
+                } else if (enemy.body.blocked.left) {
+                    enemy.direction = 1;
+                }
+                
+                // Aplicar velocidad según dirección
+                enemy.setVelocityX(50 * enemy.direction);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprite Ninja</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        .container {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            margin: auto;
+            background-color: #E3DCC3;
+        }
+
+        .ninja {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: url('./'); /* Coloca aquí la ruta del sprite */
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            transition: 0.1s;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .controls button {
+            width: 50px;
+            height: 50px;
+            background-color: #444;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body> 
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>Sprite Ninja</h1>
+            <h2>Controla tu ninja</h2>
+        </header>
+        <section class="container">
+            <div class="ninja"></div>
+            <div class="controls">
+                <button class="left">Left</button>
+                <button class="idle">Idle</button>
+                <button class="right">Right</button>
+                <button class="jump">Jump</button>
+            </div>
+        </section>
+    </main>
+    <script>
+        const idle = document.querySelector('.idle');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        const ninja = document.querySelector('.ninja');
+
+        const frameWidth = 100;
+        const totalFrames = 8;
+        let fps = 6;
+        let currentFrame = 0;
+        let lastTime = 0;
+
+        idle.addEventListener('click', () => {
+            fps = 6;
+            ninja.style.backgroundPositionY = '0px';
+        });
+
+        left.addEventListener('click', () => {
+            fps = 24;
+            ninja.style.backgroundPositionY = '-200px';
+        });
+
+        right.addEventListener('click', () => {
+            fps = 24;
+            ninja.style.backgroundPositionY = '-100px';
+        });
+
+        function animateNinja(timestamp) {
+            if (timestamp - lastTime > 1000 / fps) {
+                currentFrame = (currentFrame + 1) % totalFrames;
+                ninja.style.backgroundPositionX = `-${currentFrame * frameWidth}px`;
+                lastTime = timestamp;
+            }
+            requestAnimationFrame(animateNinja);
+        }
+
+        requestAnimationFrame(animateNinja);
+    </script>
+</body>
+</html>
